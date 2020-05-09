@@ -43,8 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnneeScolaire.cs" />
+    <Compile Include="AutreIntervenant.cs" />
+    <Compile Include="Eleve.cs" />
+    <Compile Include="Livrable.cs" />
+    <Compile Include="Matiere.cs" />
+    <Compile Include="ModificationUtilisateur.cs" />
+    <Compile Include="Personne.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RechercheUtilisateur.cs" />
+    <Compile Include="Repertoire.cs" />
+    <Compile Include="Sauvegarde.cs" />
+    <Compile Include="TypeProjet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
