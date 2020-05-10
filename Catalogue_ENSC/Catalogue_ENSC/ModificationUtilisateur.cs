@@ -39,14 +39,15 @@ namespace Catalogue_ENSC
             string champSansEspaces = "";
             bool premierCaracNonEspaceAtteint = false;
             bool dernierCaracNonEspaceAtteint = false;
-            int cpt = -1;
+            int cpt = 0;
             int longueurChamp = champ.Length;
             while (!premierCaracNonEspaceAtteint & cpt < longueurChamp) //On parcourt le champ jusqu'à atteindre le premier caractère qui n'est pas un espace ou jusqu'à atteindre la fin du champ
             {
-                cpt++;
                 if (champ[cpt] != ' ')
                     premierCaracNonEspaceAtteint = true;
+                cpt++;
             }
+            cpt--;
             while (!dernierCaracNonEspaceAtteint & cpt < longueurChamp) //On parcourt le champ du premier caractèrequi n'est pas un espace jusqu'au dernier ou jusqu'à la fin du champ
             {
                 if (champ[cpt] != ' ')
@@ -61,6 +62,8 @@ namespace Catalogue_ENSC
                     }
                     if (!autreCaracterePresentApres)
                         dernierCaracNonEspaceAtteint = true;
+                    else
+                        champSansEspaces += champ[cpt];
                 }
                 cpt++;
             }
@@ -186,7 +189,7 @@ namespace Catalogue_ENSC
             }
             else
             {
-                Eleve chefDeProjet = (Eleve)Convert.ChangeType(Repertoire["eleve", stringChefDeProjet], typeof(Eleve));
+                Eleve chefDeProjet = (Eleve)Convert.ChangeType(Repertoire["intervenant", stringChefDeProjet], typeof(Eleve));
             }
 
 
@@ -204,7 +207,7 @@ namespace Catalogue_ENSC
                 List<Eleve> developpeurs = new List<Eleve> { };
                 foreach (string stringDeveloppeur in listStringDeveloppeurs)
                 {
-                    developpeurs.Add((Eleve)Convert.ChangeType(Repertoire["eleve", stringDeveloppeur], typeof(Eleve)));
+                    developpeurs.Add((Eleve)Convert.ChangeType(Repertoire["intervenant", stringDeveloppeur], typeof(Eleve)));
                 }
             }
 
@@ -223,7 +226,7 @@ namespace Catalogue_ENSC
                 List<Eleve> maquetteurs = new List<Eleve> { };
                 foreach (string stringMaquetteur in listStringMaquetteurs)
                 {
-                    maquetteurs.Add((Eleve)Convert.ChangeType(Repertoire["eleve", stringMaquetteur], typeof(Eleve)));
+                    maquetteurs.Add((Eleve)Convert.ChangeType(Repertoire["intervenant", stringMaquetteur], typeof(Eleve)));
                 }
             }
 
@@ -238,11 +241,11 @@ namespace Catalogue_ENSC
             }
             else
             {
-                List<string> listStringPoleFacteurHumain = SeparerChaineDeCaracteres(Console.ReadLine());
+                List<string> listStringPoleFacteurHumain = SeparerChaineDeCaracteres(stringPoleFacteurHumain);
                 List<Eleve> poleFacteurHumain = new List<Eleve> { };
                 foreach (string etudiantPoleFacteurHumain in listStringPoleFacteurHumain)
                 {
-                    poleFacteurHumain.Add((Eleve)Convert.ChangeType(Repertoire["eleve", etudiantPoleFacteurHumain], typeof(Eleve)));
+                    poleFacteurHumain.Add((Eleve)Convert.ChangeType(Repertoire["intervenant", etudiantPoleFacteurHumain], typeof(Eleve)));
                 }
             }
 
@@ -256,28 +259,57 @@ namespace Catalogue_ENSC
             }
             else
             {
-                AutreIntervenant client = (AutreIntervenant)Convert.ChangeType(Repertoire["autreIntervenant", stringClient], typeof(AutreIntervenant));
+                AutreIntervenant client = (AutreIntervenant)Convert.ChangeType(Repertoire["intervenant", stringClient], typeof(AutreIntervenant));
             }
 
-
-            /*//On récupère les matieres du projet
-            if (typeProjet.Matieres == null)
+            //On récupère le nom des tuteurs
+            Console.WriteLine("Quels sont les noms des tuteurs ? (dans le cas d'un projet intramatière, les tuteurs pourront être les professeurs encadrant le projet");
+            string stringTuteurs = EnleverLesEspaces(Console.ReadLine());
+            bool stringTuteursRempli = VerifierChampRempli(stringClient);
+            if (!stringClientRempli)
             {
-                Console.WriteLine("Quelles sont la/les matière(s) du projet ? (Rentrez soit le nom de la matière comme orthographiée sur moodle, soit son code)");
-                List<string> stringEleves = SeparerChaineDeCaracteres(Console.ReadLine());
-                List<Eleve> eleves = new List<Eleve> { };
-                foreach (string stringEleve in stringEleves)
-                {
-                    eleves.Add((Eleve)Convert.ChangeType(Repertoire["eleve", stringEleve], typeof(Eleve)));
-                }
+                AutreIntervenant tuteurs = null;
             }
-            else
+
+            List<string> listStringTuteurs = SeparerChaineDeCaracteres(stringTuteurs);
+            List<AutreIntervenant> tuteurs = new List<AutreIntervenant> { };
+            foreach (string tuteur in listStringTuteurs)
             {
-                string anneesEtudes = typeProjet.SujetLibre;
+                tuteurs.Add((AutreIntervenant)Convert.ChangeType(Repertoire["intervenant", tuteur], typeof(AutreIntervenant)));
             }
-            */
 
+            //On récupère les livrables 
+            Console.WriteLine("Quels sont les livrables du projet ?");
+            string stringLivrables = EnleverLesEspaces(Console.ReadLine());
+            List<string> listStringLivrables = SeparerChaineDeCaracteres(stringLivrables);
+            List<Livrable> livrables = new List<Livrable> { };
+            foreach (string livrable in listStringLivrables)
+            {
+                livrables.Add((Livrable)Convert.ChangeType(Repertoire["livrable", livrable], typeof(Livrable)));
+            }
 
+            //On récupère la date de début du projet
+            Console.WriteLine("Quelle est la date de début du projet ? (écrivez sous la forme \"mois,jour,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"2,3,2019\"");
+            string stringDateDebut = EnleverLesEspaces(Console.ReadLine());
+            List<string> listStringDateDebut = SeparerChaineDeCaracteres(stringDateDebut);
+            int mois = int.Parse(listStringDateDebut[0]);
+            int jour = int.Parse(listStringDateDebut[1]);
+            int annee = int.Parse(listStringDateDebut[2]);
+            DateTime dateDebut = new DateTime ( mois, jour, annee );
+
+            //On récupère la date de fin du projet
+            Console.WriteLine("Quelle est la date de fin du projet ? (écrivez sous la forme \"mois,jour,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"2,3,2019\"");
+            string stringDateFin = EnleverLesEspaces(Console.ReadLine());
+            List<string> listStringDateFin = SeparerChaineDeCaracteres(stringDateFin);
+            mois = int.Parse(listStringDateFin[0]);
+            jour = int.Parse(listStringDateFin[1]);
+            annee = int.Parse(listStringDateFin[2]);
+            DateTime dateFin = new DateTime(mois, jour, annee);
+
+            //On récupère les mots-clefs
+            Console.WriteLine("Quels sont les mots-clefs liés au projet ?");
+            string stringMotsClefs = EnleverLesEspaces(Console.ReadLine());
+            List<string> MotsClefs = SeparerChaineDeCaracteres(stringMotsClefs);
 
 
 

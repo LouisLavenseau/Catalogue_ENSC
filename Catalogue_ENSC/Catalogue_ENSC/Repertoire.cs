@@ -11,8 +11,7 @@ namespace Catalogue_ENSC
         public List<Projet> RepertoireProjets { get; set; }
         public List<TypeProjet> RepertoireTypesProjets { get; set; }
         public List<Matiere> RepertoireMatieres { get; set; }
-        public List<Eleve> RepertoireEleves { get; set; }
-        public List<AutreIntervenant> RepertoireAutresIntervenants { get; set; }
+        public List<Personne> RepertoireIntervenants { get; set; }
         public List<AnneeScolaire> RepertoireAnneesScolaires { get; set; }
         public List<Livrable> RepertoireLivrables { get; set; }
         public List<string> RepertoireMotsClefs { get; set; }
@@ -45,25 +44,15 @@ namespace Catalogue_ENSC
                     return null;
                 }
 
-                else if (repertoire == "autreIntervenant")
+                else if (repertoire == "intervenant")
                 {
-                    foreach (AutreIntervenant autreIntervenant in RepertoireAutresIntervenants)
+                    foreach (AutreIntervenant intervenant in RepertoireIntervenants)
                     {
-                        if (autreIntervenant.Nom == nom)
-                            return autreIntervenant;
+                        if (intervenant.Nom == nom)
+                            return intervenant;
                     }
                     return null;
-                }
-
-                else if (repertoire == "eleve")
-                {
-                    foreach (Eleve eleve in RepertoireEleves)
-                    {
-                        if (eleve.Nom == nom)
-                            return eleve;
-                    }
-                    return null;
-                }
+                }             
 
                 else if (repertoire == "matiere")
                 {
