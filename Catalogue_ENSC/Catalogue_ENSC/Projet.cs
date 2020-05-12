@@ -10,6 +10,7 @@ namespace Catalogue_ENSC
     {
 
         public string Nom { get; private set; }
+        public string Sujet { get; private set; }
         public string SujetLibre { get; private set; }
         public TypeProjet TypeProjet { get; set; }
         public List<int> AnneesEtudes { get; private set; }
@@ -29,11 +30,12 @@ namespace Catalogue_ENSC
         public DateTime DateFin { get; private set; }
         public List<string> MotsClefs { get; private set; }
 
-        public Projet(string nom, string sujetLibre, TypeProjet typeProjet, List<int> anneesEtudes, List<Matiere> matieres, List<int> promos, AnneeScolaire anneeScolaire,
-            int nbPersonnesImpliquees, List<Eleve> etudiants, Eleve chefDeProjet, List<Eleve> developpeurs, List<Eleve> maquetteurs, List<Eleve> poleFacteurHumain, AutreIntervenant client,
+        public Projet(string nom, string sujet, string sujetLibre, TypeProjet typeProjet, List<int> anneesEtudes, List<Matiere> matieres, List<int> promos, AnneeScolaire anneeScolaire,
+            int nbPersonnesImpliquees, List<Eleve> etudiants, Eleve chefDeProjet, List<Eleve> developpeurs, List<Eleve> maquetteurs, List<Eleve> poleFacteurHumain, Personne client,
             List<AutreIntervenant> tuteurs, List<Livrable> livrables, DateTime dateDebut, DateTime dateFin, List<string> motsClefs)
         {
             Nom = nom;
+            Sujet = sujet;
             SujetLibre = sujetLibre;
             TypeProjet = typeProjet;
             AnneesEtudes = anneesEtudes;
@@ -57,6 +59,162 @@ namespace Catalogue_ENSC
         public void ModifierProjet()
         {
             //A compléter
+        }
+        
+        public override string ToString()
+        {
+            string anneeEtudes = "";
+            bool premierMotPasse = false;
+            foreach (int anneeEtude in AnneesEtudes)
+            {
+                if (premierMotPasse)
+                {
+                    anneeEtudes +=  ", " + anneeEtude;
+                }
+                else
+                {
+                    anneeEtudes += anneeEtude;
+                    premierMotPasse = true;
+                }
+            }
+
+            string matieres = "";
+            premierMotPasse = false;
+            foreach (Matiere matiere in Matieres)
+            {
+                if (premierMotPasse)
+                {
+                    matieres += ", " + matiere;
+                }
+                else
+                {
+                    matieres += matiere;
+                    premierMotPasse = true;
+                }
+            }
+
+            string promos = "";
+            premierMotPasse = false;
+            foreach (int promo in Promos)
+            {
+                if (premierMotPasse)
+                {
+                    promos += ", " + promo;
+                }
+                else
+                {
+                    promos += promo;
+                    premierMotPasse = true;
+                }
+            }
+
+            string etudiants = "";
+            premierMotPasse = false;
+            foreach (Eleve eleve in Etudiants)
+            {
+                if (premierMotPasse)
+                {
+                    etudiants += ", " + eleve;
+                }
+                else
+                {
+                    etudiants += eleve;
+                    premierMotPasse = true;
+                }
+            }
+
+            string developpeurs = "";
+            premierMotPasse = false;
+            foreach (Eleve developpeur in Developpeurs)
+            {
+                if (premierMotPasse)
+                {
+                    developpeurs += ", " + developpeur;
+                }
+                else
+                {
+                    developpeurs += developpeur;
+                    premierMotPasse = true;
+                }
+            }
+
+            string maquetteurs = "";
+            premierMotPasse = false;
+            foreach (Eleve maquetteur in Maquetteurs)
+            {
+                if (premierMotPasse)
+                {
+                    maquetteurs += ", " + maquetteur;
+                }
+                else
+                {
+                    maquetteurs += maquetteur;
+                    premierMotPasse = true;
+                }
+            }
+
+            string poleFacteurHumain = "";
+            premierMotPasse = false;
+            foreach (Eleve elevePoleFacteurHumain in PoleFacteurHumain)
+            {
+                if (premierMotPasse)
+                {
+                    poleFacteurHumain += ", " + elevePoleFacteurHumain;
+                }
+                else
+                {
+                    poleFacteurHumain += elevePoleFacteurHumain;
+                    premierMotPasse = true;
+                }
+            }
+
+            string tuteurs = "";
+            premierMotPasse = false;
+            foreach (AutreIntervenant tuteur in Tuteurs)
+            {
+                if (premierMotPasse)
+                {
+                    tuteurs += ", " + tuteur;
+                }
+                else
+                {
+                    tuteurs += tuteur;
+                    premierMotPasse = true;
+                }
+            }
+
+            string livrables = "";
+            premierMotPasse = false;
+            foreach (Livrable livrable in Livrables)
+            {
+                if (premierMotPasse)
+                {
+                    livrables += ", " + livrable;
+                }
+                else
+                {
+                    livrables += livrable;
+                    premierMotPasse = true;
+                }
+            }
+
+            string motsClefs = "";
+            premierMotPasse = false;
+            foreach (string motClef in MotsClefs)
+            {
+                if (premierMotPasse)
+                {
+                    motsClefs += ", " + motClef;
+                }
+                else
+                {
+                    motsClefs += motClef;
+                    premierMotPasse = true;
+                }
+            }
+            return Nom + "\n" + SujetLibre + "\n" + TypeProjet + "\n" + anneeEtudes + "\n" + matieres + "\n" + promos + "\n" + AnneeScolaire + "\n" +
+                NbPersonnesImpliquees + "\n" + etudiants + "\n" + ChefDeProjet + "\n" + developpeurs + "\n" + maquetteurs + "\n" + poleFacteurHumain + "\n" +
+                Client + "\n" + tuteurs + "\n" + livrables + "\n" + DateDebut.ToLongDateString() + "\n" + DateFin.ToLongDateString() + "\n" + motsClefs;
         }
     }
 }

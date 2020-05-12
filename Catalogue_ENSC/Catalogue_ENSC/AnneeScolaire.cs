@@ -12,9 +12,16 @@ namespace Catalogue_ENSC
         public int AnneeDebut { get; private set; }
         public int AnneeFin { get; private set; }
 
+        public AnneeScolaire(string nom, int anneeDebut, int anneeFin)
+        {
+            Nom = nom;
+            AnneeDebut = anneeDebut;
+            AnneeFin = anneeFin;
+        }
+
         public override string ToString()
-        {   //A compléter
-            return base.ToString();
+        {  
+            return Nom;
         }
     }
 }

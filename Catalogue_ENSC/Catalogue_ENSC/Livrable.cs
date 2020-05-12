@@ -10,10 +10,14 @@ namespace Catalogue_ENSC
     {
         public string Nom { get; private set; }
 
+        public Livrable(string nom)
+        {
+            Nom = nom;
+        }
+
         public override string ToString()
         {
-            //A compléter
-            return base.ToString();
+            return Nom;
         }
     }
 }

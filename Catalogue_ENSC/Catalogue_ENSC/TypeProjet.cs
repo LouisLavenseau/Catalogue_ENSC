@@ -9,6 +9,7 @@ namespace Catalogue_ENSC
     class TypeProjet
     {
         public string Nom { get; private set; }
+        public string Sujet { get; private set; }
         public string SujetLibre { get; private set; }
         public List<int> AnneesEtudes { get; private set; }
         public List<Matiere> Matieres { get; private set; }
@@ -37,6 +38,11 @@ namespace Catalogue_ENSC
         public void ModifierTypeProjet()
         {
             //A compléter
+        }
+
+        public override string ToString()
+        {
+            return Nom;
         }
     }
 }

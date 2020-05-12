@@ -12,7 +12,7 @@ namespace Catalogue_ENSC
         public bool ARedouble { get; private set; }
         public int AnneeEtudeRedoublement { get; private set; }
 
-        public Eleve(string nom, int promo, bool aRedouble, int anneeEtudeRedoublement) : base(nom)
+        public Eleve(string identifiant, string prenomNom, int promo, bool aRedouble, int anneeEtudeRedoublement) : base(identifiant,prenomNom)
         {
             Promo = promo;
             ARedouble = aRedouble;
@@ -26,7 +26,6 @@ namespace Catalogue_ENSC
 
         public override string ToString()
         {
-            //A compléter
             return base.ToString();
         }
     }

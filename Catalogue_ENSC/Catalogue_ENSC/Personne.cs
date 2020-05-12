@@ -8,16 +8,18 @@ namespace Catalogue_ENSC
 {
     abstract class Personne
     {
-        public string Nom { get; private set; }
+        public string Identifiant { get; private set; }
+        public string PrenomNom { get; private set; }
 
-        public Personne(string nom)
+        public Personne(string identifiant, string prenomNom)
         {
-            Nom = nom;
+            Identifiant = identifiant;
+            PrenomNom = prenomNom;
         }
 
         public override string ToString()
-        {   //A compléter
-            return base.ToString();
+        {   
+            return PrenomNom;
         }
     }
 }

@@ -18,6 +18,21 @@ namespace Catalogue_ENSC
         public List<int> RepertoirePromos { get; set; }
         public List<int> RepertoireAnneesEtudes { get; set; }
 
+        public Repertoire(List<Projet> repertoireProjets,List<TypeProjet> repertoireTypesProjets,List<Matiere> repertoire,
+                List<Personne> repertoireIntervenants,List<AnneeScolaire> repertoireAnneesScolaires, List<Livrable> repertoireLivrables,
+                List<string> repertoireMotsClefs,List<int> repertoirePromos,List<int> repertoireAnneesEtudes)
+        {
+            RepertoireProjets = repertoireProjets;
+            RepertoireTypesProjets = repertoireTypesProjets;
+            RepertoireMatieres = RepertoireMatieres;
+            RepertoireIntervenants = repertoireIntervenants;
+            RepertoireAnneesScolaires = repertoireAnneesScolaires;
+            RepertoireLivrables = repertoireLivrables;
+            RepertoireMotsClefs = repertoireMotsClefs;
+            RepertoirePromos = repertoirePromos;
+            RepertoireAnneesEtudes = repertoireAnneesEtudes;
+        }
+
         public Object this[string repertoire, string nom]
         {
             get
@@ -46,9 +61,11 @@ namespace Catalogue_ENSC
 
                 else if (repertoire == "intervenant")
                 {
-                    foreach (AutreIntervenant intervenant in RepertoireIntervenants)
+                    foreach (Personne intervenant in RepertoireIntervenants)
                     {
-                        if (intervenant.Nom == nom)
+                        if (intervenant.PrenomNom == nom)
+                            return intervenant;
+                        if (intervenant.Identifiant == nom)
                             return intervenant;
                     }
                     return null;

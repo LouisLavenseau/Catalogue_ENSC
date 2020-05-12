@@ -22,8 +22,8 @@ namespace Catalogue_ENSC
         }
 
         public override string ToString()
-        {   //A compléter
-            return base.ToString();
+        {   
+            return Nom;
         }
     }
 }

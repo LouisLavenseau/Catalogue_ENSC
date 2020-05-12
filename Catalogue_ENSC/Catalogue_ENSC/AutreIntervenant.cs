@@ -10,7 +10,7 @@ namespace Catalogue_ENSC
     {
         public string Statut { get; private set; }
 
-        public AutreIntervenant(string nom, string statut) : base(nom)
+        public AutreIntervenant(string identifiant, string prenomNom, string statut) : base(identifiant, prenomNom)
         {
             Statut = statut;
         }
@@ -18,7 +18,6 @@ namespace Catalogue_ENSC
 
         public override string ToString()
         {
-            //A Compléter
             return base.ToString();
         }
     }
