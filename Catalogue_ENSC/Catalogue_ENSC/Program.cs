@@ -13,12 +13,13 @@ namespace Catalogue_ENSC
             Matiere poo = new Matiere("poo", "Sciences fondamentales", "codeMatiere", "codeUe");
             Eleve llavenseau = new Eleve("llavenseau", "Louis LAVENSEAU", 2022, false, 0);
             TypeProjet typeProjetInvente = new TypeProjet("typeProjetInvente", null, new List<int> { 1 }, new List<Matiere> { poo }, 2, null, null, new DateTime(2019, 8, 8), new DateTime(2019, 8, 12), new List<string> { "inventé" });
-            AutreIntervenant bpesquet = new AutreIntervenant("bpesquet", "Baptise Pesquet", "professeur");
+            AutreIntervenant bpesquet = new AutreIntervenant("bpesquet", "Baptiste Pesquet", "professeur");
+            AutreIntervenant eclermont = new AutreIntervenant("eclermont", "Edwige Clermont", "professeur");
             Livrable rapport = new Livrable("rapport");
             AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020);
 
             Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { typeProjetInvente }, new List<Matiere> { poo },
-                new List<Personne> { llavenseau, bpesquet }, new List<AnneeScolaire> { cetteAnnee }, new List<Livrable> { rapport },
+                new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee }, new List<Livrable> { rapport },
                 new List<string> { }, new List<int> { }, new List<int> { });
 
             ModificationUtilisateur modificationUtilisateur = new ModificationUtilisateur(repertoire);

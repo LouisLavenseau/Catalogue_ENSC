@@ -262,13 +262,17 @@ namespace Catalogue_ENSC
             }
 
             //On récupère le nom du client
-            AutreIntervenant client = null;
+            Personne client = null;
             Console.WriteLine("Quel est le nom du client du projet ? (s'il y en a un)");
             string stringClient = EnleverLesEspaces(Console.ReadLine());
             bool stringClientRempli = VerifierChampRempli(stringClient);
             if (stringClientRempli)
             {
-                client = (AutreIntervenant)Convert.ChangeType(Repertoire["intervenant", stringClient], typeof(AutreIntervenant));
+                client = (AutreIntervenant)Convert.ChangeType(Repertoire["autreIntervenant", stringClient], typeof(AutreIntervenant));
+                if (client == null)
+                {
+                    client = (Eleve)Convert.ChangeType(Repertoire["eleve", stringClient], typeof(Eleve));
+                }
             }
 
             //On récupère le nom des tuteurs
@@ -277,13 +281,13 @@ namespace Catalogue_ENSC
             {
                 Console.WriteLine("Quels sont les noms des tuteurs ? (dans le cas d'un projet intramatière, les tuteurs pourront être les professeurs encadrant le projet)");
                 string stringTuteurs = EnleverLesEspaces(Console.ReadLine());
-                bool stringTuteursRempli = VerifierChampRempli(stringClient);
-                if (stringClientRempli)
+                bool stringTuteursRempli = VerifierChampRempli(stringTuteurs);
+                if (stringTuteursRempli)
                 {
                     List<string> listStringTuteurs = SeparerChaineDeCaracteres(stringTuteurs);
                     foreach (string tuteur in listStringTuteurs)
                     {
-                        tuteurs.Add((AutreIntervenant)Convert.ChangeType(Repertoire["intervenant", tuteur], typeof(AutreIntervenant)));
+                        tuteurs.Add((AutreIntervenant)Convert.ChangeType(Repertoire["autreIntervenant", tuteur], typeof(AutreIntervenant)));
                     }
                 }
             }
