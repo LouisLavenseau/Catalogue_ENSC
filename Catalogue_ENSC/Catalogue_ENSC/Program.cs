@@ -41,7 +41,7 @@ namespace Catalogue_ENSC
                 if (fonctionnaliteVoulue == "2")
                 {
                     modificationUtilisateur.InitialiserCreation();
-                    /*foreach (Projet projet in repertoire.RepertoireProjets)
+                    foreach (Projet projet in repertoire.RepertoireProjets)
                     {
                         Console.WriteLine("\n" + projet);
                         Console.WriteLine("\n" + projet.Tuteurs.Count());
@@ -49,7 +49,7 @@ namespace Catalogue_ENSC
                         {
                             Console.WriteLine("\n \n ok voici la suite : \n " + tuteur);
                         }
-                    }*/
+                    }
 
                     //liste de if (1 par méthode) à faire
                     Console.ReadKey();

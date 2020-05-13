@@ -109,14 +109,13 @@ namespace Catalogue_ENSC
             string stringTypeProjet = EnleverLesEspaces(Console.ReadLine());
             TypeProjet typeProjet = (TypeProjet)Convert.ChangeType(Repertoire["typeProjet", stringTypeProjet], typeof(TypeProjet));
 
-
             //On récupère le nom du projet
             string sujet = "";
             Console.WriteLine("Quel est le nom du projet ?");
             string nom = EnleverLesEspaces(Console.ReadLine());
 
             //On récupère le sujet du projet
-            if (typeProjet == null)
+            if (typeProjet.Sujet == null)
             {
                 Console.WriteLine("Quel est le sujet du projet ?");
                 sujet = EnleverLesEspaces(Console.ReadLine());
