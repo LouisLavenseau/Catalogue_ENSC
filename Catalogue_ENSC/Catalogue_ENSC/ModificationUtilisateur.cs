@@ -89,6 +89,16 @@ namespace Catalogue_ENSC
             return true;
         }
 
+        public void InitialiserCreation ()
+        {
+            Console.WriteLine("Quel est le type de l'élément que vous voulez ajouter ? Ecrivez projet, type de projet, élève, tuteur, client, \n année d'étude, matière, ou livrable");
+            string typeElementACreer = Console.ReadLine();
+            Console.Clear();
+            if (typeElementACreer == "projet")
+            {
+                CreerProjet();
+            }
+        }
 
         public void CreerProjet()
         {   //initialisation du booleen qui vérifie que ce que rentre l'utilisateur convient
@@ -101,12 +111,20 @@ namespace Catalogue_ENSC
 
 
             //On récupère le nom du projet
+            string sujet = "";
             Console.WriteLine("Quel est le nom du projet ?");
             string nom = EnleverLesEspaces(Console.ReadLine());
 
             //On récupère le sujet du projet
-            Console.WriteLine("Quel est le sujet du projet ?");
-            string sujet = EnleverLesEspaces(Console.ReadLine());
+            if (typeProjet == null)
+            {
+                Console.WriteLine("Quel est le sujet du projet ?");
+                sujet = EnleverLesEspaces(Console.ReadLine());
+            }
+            else
+            {
+                sujet = typeProjet.Sujet;
+            }
 
             //On récupère l'information de à quel point le sujet est imposé
             string sujetLibre = null;

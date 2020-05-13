@@ -20,10 +20,11 @@ namespace Catalogue_ENSC
         public DateTime DateFin { get; private set; }
         public List<string> MotsClefs { get; private set; }
 
-        public TypeProjet(string nom, string sujetLibre, List<int> anneesEtudes, List<Matiere> matieres, int nbPersonnesImpliquees, List<AutreIntervenant> tuteurs,
+        public TypeProjet(string nom, string sujet, string sujetLibre, List<int> anneesEtudes, List<Matiere> matieres, int nbPersonnesImpliquees, List<AutreIntervenant> tuteurs,
             List<Livrable> livrables, DateTime dateDebut, DateTime dateFin, List<string> motsClefs)
         {
             Nom = nom;
+            Sujet = sujet;
             SujetLibre = sujetLibre;
             AnneesEtudes = anneesEtudes;
             Matieres = matieres;

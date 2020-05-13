@@ -19,9 +19,9 @@ namespace Catalogue_ENSC
             AnneeEtudeRedoublement = anneeEtudeRedoublement;
         }
 
-        public void CalculerAnneeEtudeProjet(Projet projet)
+        public int CalculerAnneeEtudeProjet(Projet projet)
         {
-            //A compléter
+            return 3 - Promo + projet.AnneeScolaire.AnneeFin;
         }
 
         public override string ToString()

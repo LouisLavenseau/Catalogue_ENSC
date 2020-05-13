@@ -8,7 +8,6 @@ namespace Catalogue_ENSC
 {
     class Projet
     {
-
         public string Nom { get; private set; }
         public string Sujet { get; private set; }
         public string SujetLibre { get; private set; }
