@@ -220,7 +220,7 @@ namespace Catalogue_ENSC
             List<string> listStringEtudiants = SeparerChaineDeCaracteres(stringEtudiants);
             foreach (string etudiant in listStringEtudiants)
             {
-                etudiants.Add((Eleve)Convert.ChangeType(Repertoire["intervenant", etudiant], typeof(Eleve)));
+                etudiants.Add((Eleve)Convert.ChangeType(Repertoire["eleve", etudiant], typeof(Eleve)));
             }
 
             //On récupère le nom du chef de projet s'il y en a un
@@ -399,15 +399,24 @@ namespace Catalogue_ENSC
                         motsClefs.Add(motClef);
                     }
                 }
-
-                Repertoire.RepertoireProjets.Add(new Projet(nom, sujet, sujetLibre, typeProjet, anneesEtudes, matieres, promos, anneeScolaire, nbPersonnesImpliquees, etudiants,
-                    chefDeProjet, developpeurs, maquetteurs, poleFacteurHumain, client, tuteurs, livrables, dateDebut, dateFin, motsClefs));
+                else
+                {
+                    motsClefs = typeProjet.MotsClefs;
+                }
             }
 
+            int NbProjetsAvant = Repertoire.RepertoireProjets.Count();
+            Repertoire.RepertoireProjets.Add(new Projet(nom, sujet, sujetLibre, typeProjet, anneesEtudes, matieres, promos, anneeScolaire, nbPersonnesImpliquees, etudiants,
+                chefDeProjet, developpeurs, maquetteurs, poleFacteurHumain, client, tuteurs, livrables, dateDebut, dateFin, motsClefs));
+            int NbProjetsAprès = Repertoire.RepertoireProjets.Count();
 
+            if (NbProjetsAprès==NbProjetsAvant+1)
+            {
+                Console.Clear();
+                Console.WriteLine("Le projet a été ajouté avec succès !");
+            }
 
-
-
+            
         }
         public void CreerTypeProjet()
         { }

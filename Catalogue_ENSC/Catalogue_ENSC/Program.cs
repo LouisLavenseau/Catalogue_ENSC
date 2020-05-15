@@ -16,7 +16,7 @@ namespace Catalogue_ENSC
             AutreIntervenant eclermont = new AutreIntervenant("eclermont", "Edwige Clermont", "professeur");
             Livrable rapport = new Livrable("rapport");
             TypeProjet tp1 = new TypeProjet("tp1", "sujet 1", "impose", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { bpesquet }, new List<Livrable> { rapport }, new DateTime(2019, 8, 8), new DateTime(2019, 8, 12), new List<string> { "inventé" });
-            TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(2019, 8, 8), new DateTime(2019, 8, 12), new List<string> { "inventé" });
+            TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(2019, 8, 8), new DateTime(2019, 8, 12), new List<string> { "inventé" });
             AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020);
             AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021);
             Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo },
@@ -28,6 +28,7 @@ namespace Catalogue_ENSC
             string fonctionnaliteVoulue = null;
             while (fonctionnaliteVoulue != "")
             {
+                Console.Clear();
                 Console.WriteLine("Voulez-vous consulter le catalogue des projets de l'ENSC (écrivez 1), ajouter un élément au catalogue (écrivez 2) ?, \n "
                     + "modifier un élément un élément du catalogue (écrivez 3) ? Supprimer un élément du catalogue (écrivez 4) ? Ou quitter \n l'application ? (tapez juste entrée)");
                 fonctionnaliteVoulue = Console.ReadLine();
@@ -41,15 +42,15 @@ namespace Catalogue_ENSC
                 if (fonctionnaliteVoulue == "2")
                 {
                     modificationUtilisateur.InitialiserCreation();
-                    foreach (Projet projet in repertoire.RepertoireProjets)
+                   /* foreach (Projet projet in repertoire.RepertoireProjets)
                     {
                         Console.WriteLine("\n" + projet);
-                        Console.WriteLine("\n" + projet.Tuteurs.Count());
-                        foreach (AutreIntervenant tuteur in projet.Tuteurs)
+                        Console.WriteLine("\n" + projet.Etudiants.Count());
+                        foreach (Eleve eleve in projet.Etudiants)
                         {
-                            Console.WriteLine("\n \n ok voici la suite : \n " + tuteur);
+                            Console.WriteLine(eleve);
                         }
-                    }
+                    }*/
 
                     //liste de if (1 par méthode) à faire
                     Console.ReadKey();

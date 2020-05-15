@@ -27,33 +27,32 @@ namespace Catalogue_ENSC
             Console.Clear();
             if (modeDeRecherche == "élève")
             {
-                ConsulterEleve(modeDeRecherche, instanceDeRecherche);
+                ConsulterEleve(instanceDeRecherche);
             }
             if (modeDeRecherche == "type de projet ")
             {
-                ConsulterTypeDeProjet(modeDeRecherche, instanceDeRecherche);
+                ConsulterTypeDeProjet(instanceDeRecherche);
             }
             if (modeDeRecherche == "promo")
             {
-                ConsulterPromo(modeDeRecherche, instanceDeRecherche);
+                ConsulterPromo(instanceDeRecherche);
             }
             if (modeDeRecherche == "mots-clef")
             {
-                ConsulterMotClef(modeDeRecherche, instanceDeRecherche);
+                ConsulterMotClef(instanceDeRecherche);
             }
             if (modeDeRecherche == "année de scolarité")
             {
-                ConsulterAnneeScolaire(modeDeRecherche, instanceDeRecherche);
+                ConsulterAnneeScolaire(instanceDeRecherche);
             }
-            Console.ReadKey();
         }
 
 
-        public void ConsulterEleve(string modeDeRecherche, string instanceDeRecherche)
+        public void ConsulterEleve(string instanceDeRecherche)
         {
             Console.WriteLine("Comment voulez-classer à l'affichage les projets qui correspondent à la recherche ? Ecrivez année d'étude, liberté de sujet, ou matière");
             string classement = Console.ReadLine();
-            Console.ReadKey();
+            //Console.Clear();
             List<Projet> projetsAAfficher = new List<Projet> { };
             Eleve eleveDeRecherche = (Eleve)Convert.ChangeType(Repertoire["eleve", instanceDeRecherche], typeof(Eleve));
             foreach (Projet projet in Repertoire.RepertoireProjets) // On parcourt tous les projets de l'application, on ajoute les projets comprenant l'élève à la liste
@@ -63,12 +62,11 @@ namespace Catalogue_ENSC
                     if (eleve == eleveDeRecherche)
                     {
                         projetsAAfficher.Add(projet);
-                        Console.WriteLine(projet);
                     }
                 }
             }
             
-            /*if (classement == "année d'étude")
+            if (classement == "année d'étude")
            {
                 foreach (int anneeEtude in Repertoire.RepertoireAnneesEtudes) // Pour chaque année d'étude, on affiche les projets
                 {
@@ -99,7 +97,8 @@ namespace Catalogue_ENSC
                         }
                     }
                 }
-            }*/
+                Console.ReadLine();
+            }
 
 
         }
@@ -107,13 +106,13 @@ namespace Catalogue_ENSC
 
 
 
-        public void ConsulterTypeDeProjet(string modeDeRecherche, string instanceDeRecherche)
+        public void ConsulterTypeDeProjet(string instanceDeRecherche)
         { }
-        public void ConsulterPromo(string modeDeRecherche, string instanceDeRecherche)
+        public void ConsulterPromo(string instanceDeRecherche)
         { }
-        public void ConsulterMotClef(string modeDeRecherche, string instanceDeRecherche)
+        public void ConsulterMotClef(string instanceDeRecherche)
         { }
-        public void ConsulterAnneeScolaire(string modeDeRecherche, string instanceDeRecherche)
+        public void ConsulterAnneeScolaire(string instanceDeRecherche)
         { }
     }
 }
