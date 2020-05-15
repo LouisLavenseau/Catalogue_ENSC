@@ -89,7 +89,7 @@ namespace Catalogue_ENSC
             return true;
         }
 
-        public void InitialiserCreation ()
+        public void InitialiserCreation()
         {
             Console.WriteLine("Quel est le type de l'élément que vous voulez ajouter ? Ecrivez projet, type de projet, élève, tuteur, client, \n année d'étude, matière, ou livrable");
             string typeElementACreer = Console.ReadLine();
@@ -97,6 +97,10 @@ namespace Catalogue_ENSC
             if (typeElementACreer == "projet")
             {
                 CreerProjet();
+            }
+            if (typeElementACreer == "type de projet")
+            {
+                CreerTypeProjet();
             }
         }
 
@@ -332,7 +336,7 @@ namespace Catalogue_ENSC
 
             //On récupère la date de début du projet
             DateTime dateDebut = new DateTime(2000, 1, 1);
-            if (typeProjet.DateDebut.Year <2001)
+            if (typeProjet.DateDebut.Year < 2001)
             {
                 Console.WriteLine("Quelle est la date de début du projet ? (écrivez sous la forme \"mois,jour,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"2,3,2019\"");
                 string stringDateDebut = EnleverLesEspaces(Console.ReadLine());
@@ -349,7 +353,7 @@ namespace Catalogue_ENSC
 
             //On récupère la date de fin du projet
             DateTime dateFin = new DateTime(2000, 1, 1);
-            if (typeProjet.DateFin.Year <2001)
+            if (typeProjet.DateFin.Year < 2001)
             {
                 Console.WriteLine("Quelle est la date de fin du projet ? (écrivez sous la forme \"mois,jour,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"2,3,2019\"");
                 string stringDateFin = EnleverLesEspaces(Console.ReadLine());
@@ -410,20 +414,181 @@ namespace Catalogue_ENSC
                 chefDeProjet, developpeurs, maquetteurs, poleFacteurHumain, client, tuteurs, livrables, dateDebut, dateFin, motsClefs));
             int NbProjetsAprès = Repertoire.RepertoireProjets.Count();
 
-            if (NbProjetsAprès==NbProjetsAvant+1)
+            if (NbProjetsAprès == NbProjetsAvant + 1)
             {
                 Console.Clear();
                 Console.WriteLine("Le projet a été ajouté avec succès !");
             }
 
-            
+
+
         }
         public void CreerTypeProjet()
-        { }
+        {
+            // NOM projet
+            Console.WriteLine("Quel est le nom du projet ?");
+            string nom = EnleverLesEspaces(Console.ReadLine());
+
+            //sujet imposé 
+            string sujetLibre = null;
+            Console.WriteLine("Le sujet du projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écrivez \"listeImpose\") ? ou libre (écrivez \"libre\") ?");
+            string stringSujetLibre = EnleverLesEspaces(Console.ReadLine());
+            bool stringSujetLibreRempli = VerifierChampRempli(stringSujetLibre);
+            if (stringSujetLibreRempli)
+            {
+                sujetLibre = stringSujetLibre;
+            }
+
+
+            //  Demande de la MATIERE
+            List<Matiere> matieres = new List<Matiere> { };
+            Console.WriteLine("Quelles sont la/les matière(s) du projet ? (Rentrez soit le nom de la matière comme orthographiée sur moodle, soit son code)");
+            string stringMatieres = EnleverLesEspaces(Console.ReadLine());
+            bool stringMatieresRempli = VerifierChampRempli(stringMatieres);
+            if (stringMatieresRempli)
+            {
+                List<string> listStringMatieres = SeparerChaineDeCaracteres(stringMatieres);
+                foreach (string matiere in listStringMatieres)
+                {
+                    matieres.Add((Matiere)Convert.ChangeType(Repertoire["matiere", matiere], typeof(Matiere)));
+                }
+            }
+            else
+            {
+                matieres = null;
+            }
+
+            // Nombre de personne implique
+            int nbPersonnesImpliquees = 0;
+            Console.WriteLine("Combien de personnes sont impliquées dans le projet (Veuillez rentrer un nombre entier)");
+            string stringNbPersonnesImpliquees = Console.ReadLine();
+            bool stringNbpersonnesImpliqueesRempli = VerifierChampRempli(stringNbPersonnesImpliquees);
+            if (stringNbpersonnesImpliqueesRempli)
+            {
+                nbPersonnesImpliquees = int.Parse(stringNbPersonnesImpliquees);
+            }
+
+
+
+            // ANNEEs ETUDEs
+            List<int> anneesEtudes = new List<int> { };
+            Console.WriteLine("Le projet a-t-il été réalisé par des étudiants en première année (écrivez \"1\"), 2ème année (écrivez \"2\"), ou 3ème année (écrivez \"3\") ? " +
+                                      "Séparez par une virgule (ajout d'un espace optionnel) les nombres si des étudiants d'années différentes sont concernés)");
+            string stringAnneesEtudes = EnleverLesEspaces(Console.ReadLine());
+            bool stringAnnnesEtudesRempli = VerifierChampRempli(stringAnneesEtudes);
+            if (stringAnnnesEtudesRempli)
+            {
+                List<string> listStringAnneesEtudes = SeparerChaineDeCaracteres(stringAnneesEtudes);
+                anneesEtudes = new List<int> { };
+                foreach (string anneeEtude in listStringAnneesEtudes)
+
+                {
+                    anneesEtudes.Add(int.Parse(anneeEtude));
+                }
+            }
+            else
+            {
+                anneesEtudes = null;
+            }
+
+
+            //TUTEURS
+            List<AutreIntervenant> tuteurs = new List<AutreIntervenant> { };
+            Console.WriteLine("Quel est le nom du client du Tuteur ?");
+            string stringTuteurs = EnleverLesEspaces(Console.ReadLine());
+            bool stringTuteursRempli = VerifierChampRempli(stringTuteurs);
+            if (stringTuteursRempli)
+            {
+                List<string> listStringTuteurs = SeparerChaineDeCaracteres(stringTuteurs);
+                foreach (string stringTuteur in listStringTuteurs)
+                {
+                    tuteurs.Add((AutreIntervenant)Convert.ChangeType(Repertoire["autreIntervenant", stringTuteur], typeof(AutreIntervenant)));
+                }
+
+            }
+            else
+            {
+                tuteurs = null;
+            }
+
+
+
+            //Livrables
+            List<Livrable> livrables = new List<Livrable> { };
+            Console.WriteLine("Quels sont les livrables attendus pour le type de projet ? ");
+            string stringLivrables = EnleverLesEspaces(Console.ReadLine());
+            bool stringLivrablesRempli = VerifierChampRempli(stringLivrables);
+            if (stringLivrablesRempli)
+            {
+                List<string> listeLivrables = SeparerChaineDeCaracteres(stringLivrables);
+                foreach (string stringLivrable in listeLivrables)
+                {
+                    livrables.Add((Livrable)Convert.ChangeType(Repertoire["livrable", stringLivrable], typeof(Livrable)));
+                }
+
+            }
+            else
+            {
+                livrables = null;
+            }
+
+
+            //On récupère la date de début du projet
+            Console.WriteLine("Quelle est la date de début du projet ? (écrivez sous la forme \"mois,jour,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"2,3,2019\"");
+            string stringDateDebut = EnleverLesEspaces(Console.ReadLine());
+            List<string> listStringDateDebut = SeparerChaineDeCaracteres(stringDateDebut);
+            int moisDebut = int.Parse(listStringDateDebut[0]);
+            int jourDebut = int.Parse(listStringDateDebut[1]);
+            int anneeDebut = int.Parse(listStringDateDebut[2]);
+            DateTime dateDebut = new DateTime(moisDebut, jourDebut, anneeDebut);
+
+
+
+            //On récupère la date de fin du projet
+
+            Console.WriteLine("Quelle est la date de fin du projet ? (écrivez sous la forme \"mois,jour,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"2,3,2019\"");
+            string stringDateFin = EnleverLesEspaces(Console.ReadLine());
+            List<string> listStringDateFin = SeparerChaineDeCaracteres(stringDateFin);
+            int moisFin = int.Parse(listStringDateFin[0]);
+            int jourFin = int.Parse(listStringDateFin[1]);
+            int anneeFin = int.Parse(listStringDateFin[2]);
+            DateTime dateFin = new DateTime(moisFin, jourFin, anneeFin);
+
+
+            //Date fin
+
+            // Mots-Clefs
+            List<string> motsClefs = null;
+            Console.WriteLine("Quels sont les mots clés du projet que tu recherches ? ");
+            string stringMotsClefs = EnleverLesEspaces(Console.ReadLine());
+            bool stringMotsClefsRempli = VerifierChampRempli(stringMotsClefs);
+            if (stringMotsClefsRempli)
+            {
+
+                motsClefs = SeparerChaineDeCaracteres(stringMotsClefs);
+            }
+
+
+            int NbTypesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            Repertoire.RepertoireTypesProjets.Add(new TypeProjet(nom, sujetLibre, sujetLibre, anneesEtudes, matieres, nbPersonnesImpliquees, tuteurs, livrables, 
+                dateDebut, dateFin, motsClefs));
+            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+
+            if (NbTypesProjetsAprès == NbTypesProjetsAvant + 1)
+            {
+                Console.Clear();
+                Console.WriteLine("Le projet a été ajouté avec succès !");
+            }
+
+
+        }
+
+
         public void SupprimerProjet()
         { }
         public void SupprimerTypeProjet()
         { }
+
 
     }
 }

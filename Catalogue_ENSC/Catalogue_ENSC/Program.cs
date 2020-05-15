@@ -25,6 +25,7 @@ namespace Catalogue_ENSC
             ModificationUtilisateur modificationUtilisateur = new ModificationUtilisateur(repertoire);
             RechercheUtilisateur rechercheUtilisateur = new RechercheUtilisateur(repertoire);
 
+
             string fonctionnaliteVoulue = null;
             while (fonctionnaliteVoulue != "")
             {
@@ -42,15 +43,15 @@ namespace Catalogue_ENSC
                 if (fonctionnaliteVoulue == "2")
                 {
                     modificationUtilisateur.InitialiserCreation();
-                   /* foreach (Projet projet in repertoire.RepertoireProjets)
+                    foreach (TypeProjet typeProjet in repertoire.RepertoireTypesProjets)
                     {
-                        Console.WriteLine("\n" + projet);
-                        Console.WriteLine("\n" + projet.Etudiants.Count());
-                        foreach (Eleve eleve in projet.Etudiants)
+                        Console.WriteLine("\n" + typeProjet);
+                       /* Console.WriteLine("\n" + typeProjet.Etudiants.Count());
+                        foreach (Eleve eleve in typeProjet.Etudiants)
                         {
                             Console.WriteLine(eleve);
-                        }
-                    }*/
+                        }*/
+                    }
 
                     //liste de if (1 par méthode) à faire
                     Console.ReadKey();
