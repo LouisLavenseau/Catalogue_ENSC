@@ -429,6 +429,18 @@ namespace Catalogue_ENSC
             Console.WriteLine("Quel est le nom du projet ?");
             string nom = EnleverLesEspaces(Console.ReadLine());
 
+            //Sujet
+            string sujet = null;
+            Console.WriteLine("Quel est le sujet du type de projet ?");
+            string stringSujet = EnleverLesEspaces(Console.ReadLine());
+            bool stringSujetRempli = VerifierChampRempli(stringSujet);
+            if (stringSujetRempli)
+            {
+                sujet = stringSujet;
+            }
+
+
+
             //sujet imposé 
             string sujetLibre = null;
             Console.WriteLine("Le sujet du projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écrivez \"listeImpose\") ? ou libre (écrivez \"libre\") ?");
@@ -570,7 +582,7 @@ namespace Catalogue_ENSC
 
 
             int NbTypesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
-            Repertoire.RepertoireTypesProjets.Add(new TypeProjet(nom, sujetLibre, sujetLibre, anneesEtudes, matieres, nbPersonnesImpliquees, tuteurs, livrables, 
+            Repertoire.RepertoireTypesProjets.Add(new TypeProjet(nom, sujet, sujetLibre, anneesEtudes, matieres, nbPersonnesImpliquees, tuteurs, livrables, 
                 dateDebut, dateFin, motsClefs));
             int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
 
@@ -582,6 +594,8 @@ namespace Catalogue_ENSC
 
 
         }
+
+
 
 
         public void SupprimerProjet()
