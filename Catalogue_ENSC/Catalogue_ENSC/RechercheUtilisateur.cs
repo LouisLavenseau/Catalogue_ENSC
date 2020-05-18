@@ -29,11 +29,11 @@ namespace Catalogue_ENSC
             {
                 ConsulterEleve(instanceDeRecherche);
             }
-            if (modeDeRecherche == "type de projet ")
+            if (modeDeRecherche == "type de projet ") //promos
             {
                 ConsulterTypeDeProjet(instanceDeRecherche);
             }
-            if (modeDeRecherche == "promo")
+            if (modeDeRecherche == "promo") //matiere
             {
                 ConsulterPromo(instanceDeRecherche);
             }
@@ -41,7 +41,7 @@ namespace Catalogue_ENSC
             {
                 ConsulterMotClef(instanceDeRecherche);
             }
-            if (modeDeRecherche == "année de scolarité")
+            if (modeDeRecherche == "année de scolarité")//année d'étude
             {
                 ConsulterAnneeScolaire(instanceDeRecherche);
             }
@@ -54,12 +54,12 @@ namespace Catalogue_ENSC
             string classement = Console.ReadLine();
             //Console.Clear();
             List<Projet> projetsAAfficher = new List<Projet> { };
-            Eleve eleveDeRecherche = (Eleve)Convert.ChangeType(Repertoire["eleve", instanceDeRecherche], typeof(Eleve));
+            Eleve eleveRecherche = (Eleve)Convert.ChangeType(Repertoire["eleve", instanceDeRecherche], typeof(Eleve));
             foreach (Projet projet in Repertoire.RepertoireProjets) // On parcourt tous les projets de l'application, on ajoute les projets comprenant l'élève à la liste
             {
                 foreach (Eleve eleve in projet.Etudiants)
                 {
-                    if (eleve == eleveDeRecherche)
+                    if (eleve == eleveRecherche)
                     {
                         projetsAAfficher.Add(projet);
                     }
@@ -88,7 +88,7 @@ namespace Catalogue_ENSC
                                 }
                                 else // Dans le cas d'un projet comme le transpromo qui a plusieurs années d'études, on détermine en quelle année l'élève l'a réalisé et on affiche seulement si ça correspond
                                 {
-                                    if (anneeEtudeProjet == eleveDeRecherche.CalculerAnneeEtudeProjet(projet))
+                                    if (anneeEtudeProjet == eleveRecherche.CalculerAnneeEtudeProjet(projet))
                                     {
                                         Console.WriteLine(projet);
                                     }

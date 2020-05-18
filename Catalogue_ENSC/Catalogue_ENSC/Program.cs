@@ -43,15 +43,15 @@ namespace Catalogue_ENSC
                 if (fonctionnaliteVoulue == "2")
                 {
                     modificationUtilisateur.InitialiserCreation();
-                    foreach (TypeProjet typeProjet in repertoire.RepertoireTypesProjets)
+                    /*foreach (TypeProjet typeProjet in repertoire.RepertoireTypesProjets)
                     {
                         Console.WriteLine("\n" + typeProjet);
-                       /* Console.WriteLine("\n" + typeProjet.Etudiants.Count());
+                        Console.WriteLine("\n" + typeProjet.Etudiants.Count());
                         foreach (Eleve eleve in typeProjet.Etudiants)
                         {
                             Console.WriteLine(eleve);
-                        }*/
-                    }
+                        }
+                    }*/
 
                     //liste de if (1 par méthode) à faire
                     Console.ReadKey();
@@ -67,7 +67,7 @@ namespace Catalogue_ENSC
 
                 if (fonctionnaliteVoulue == "4")
                 {
-                    Console.WriteLine("Quel est le type de l'élément que vous voulez supprimr ? Ecrivez projet, type de projet, élève, tuteur, client, \n année d'étude, matière, ou livrable");
+                    Console.WriteLine("Quel est le type de l'élément que vous voulez supprimer ? Ecrivez projet, type de projet, élève, tuteur, client, \n année d'étude, matière, ou livrable");
                     string typeElementASupprimer = Console.ReadLine();
                     //liste de if (1 par méthode) à faire
                     Console.ReadKey();
@@ -77,5 +77,81 @@ namespace Catalogue_ENSC
 
 
         }
+
+        public List<string> SeparerChaineDeCaracteres(string chaineDeCaracteres)
+        {
+            string element = "";
+            char virgule = ',';
+            char espace = ' ';
+            List<string> elementsSepares = new List<string> { };
+            foreach (char caractere in chaineDeCaracteres)
+            {
+                if (caractere == virgule)
+                {
+                    elementsSepares.Add(element);
+                    element = "";
+                }
+                else
+                {
+                    if (caractere != espace)
+                    {
+                        element += caractere;
+                    }
+                }
+            }
+            elementsSepares.Add(element);
+            return elementsSepares;
+        }
+
+
+        public string EnleverLesEspaces(string champ) //Enlever les espaces en début de champ et en fin de champ
+        {
+            string champSansEspaces = "";
+            bool premierCaracNonEspaceAtteint = false;
+            bool dernierCaracNonEspaceAtteint = false;
+            int cpt = 0;
+            int longueurChamp = champ.Length;
+            if (longueurChamp > 0)
+            {
+                while (!premierCaracNonEspaceAtteint & cpt < longueurChamp) //On parcourt le champ jusqu'à atteindre le premier caractère qui n'est pas un espace ou jusqu'à atteindre la fin du champ
+                {
+                    if (champ[cpt] != ' ')
+                        premierCaracNonEspaceAtteint = true;
+                    cpt++;
+                }
+                cpt--;
+                while (!dernierCaracNonEspaceAtteint & cpt < longueurChamp) //On parcourt le champ du premier caractèrequi n'est pas un espace jusqu'au dernier ou jusqu'à la fin du champ
+                {
+                    if (champ[cpt] != ' ')
+                        champSansEspaces += champ[cpt];
+                    else //si le caractère est un espace, on vérifie si jusqu'à la fin du champ tous les autres caractères sont des espaces aussi
+                    {
+                        bool autreCaracterePresentApres = false;
+                        for (int i = cpt; i < longueurChamp; i++)
+                        {
+                            if (champ[i] != ' ')
+                                autreCaracterePresentApres = true;
+                        }
+                        if (!autreCaracterePresentApres)
+                            dernierCaracNonEspaceAtteint = true;
+                        else
+                            champSansEspaces += champ[cpt];
+                    }
+                    cpt++;
+                }
+                return champSansEspaces;
+            }
+            return champSansEspaces;
+        }
+        public bool VerifierChampRempli(string champ) //Vérfier que le champ contient au moins un caractère autre qu'un espace
+        {
+            string champNettoye = EnleverLesEspaces(champ);
+            if (champNettoye == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

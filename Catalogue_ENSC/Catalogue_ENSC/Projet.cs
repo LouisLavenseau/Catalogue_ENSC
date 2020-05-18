@@ -29,8 +29,8 @@ namespace Catalogue_ENSC
         public DateTime DateFin { get; private set; }
         public List<string> MotsClefs { get; private set; }
 
-        public Projet(string nom, string sujet, string sujetLibre, TypeProjet typeProjet, List<int> anneesEtudes, List<Matiere> matieres, List<int> promos, AnneeScolaire anneeScolaire,
-            int nbPersonnesImpliquees, List<Eleve> etudiants, Eleve chefDeProjet, List<Eleve> developpeurs, List<Eleve> maquetteurs, List<Eleve> poleFacteurHumain, Personne client,
+        public Projet(string nom, string sujet, string sujetLibre, TypeProjet typeProjet, List<int> anneesEtudes, List<Matiere> matieres, AnneeScolaire anneeScolaire,
+            List<Eleve> etudiants, Eleve chefDeProjet, List<Eleve> developpeurs, List<Eleve> maquetteurs, List<Eleve> poleFacteurHumain, Personne client,
             List<AutreIntervenant> tuteurs, List<Livrable> livrables, DateTime dateDebut, DateTime dateFin, List<string> motsClefs)
         {
             Nom = nom;
@@ -39,9 +39,15 @@ namespace Catalogue_ENSC
             TypeProjet = typeProjet;
             AnneesEtudes = anneesEtudes;
             Matieres = matieres;
+            List<int> promos = new List<int> { };
+            foreach (int anneeEtude in anneesEtudes) { promos.Add(anneeScolaire.AnneeFin + anneeEtude); }
             Promos = promos;
             AnneeScolaire = anneeScolaire;
-            NbPersonnesImpliquees = nbPersonnesImpliquees;
+            int cpt = 0;
+            foreach (Eleve etudiant in etudiants) { cpt++; }
+            foreach (AutreIntervenant tuteur in tuteurs) { cpt++; }
+            if (client != null) { cpt++; }
+            NbPersonnesImpliquees = cpt;
             Etudiants = etudiants;
             ChefDeProjet = chefDeProjet;
             Developpeurs = developpeurs;
@@ -59,7 +65,7 @@ namespace Catalogue_ENSC
         {
             //A compléter
         }
-        
+
         public override string ToString()
         {
             string anneeEtudes = "";
@@ -68,7 +74,7 @@ namespace Catalogue_ENSC
             {
                 if (premierMotPasse)
                 {
-                    anneeEtudes +=  ", " + anneeEtude;
+                    anneeEtudes += ", " + anneeEtude;
                 }
                 else
                 {
