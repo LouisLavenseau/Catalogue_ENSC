@@ -217,7 +217,7 @@ namespace Catalogue_ENSC
                     premierMotPasse = true;
                 }
             }
-            return Nom + "\n" + SujetLibre + "\n" + TypeProjet + "\n" + anneeEtudes + "\n" + matieres + "\n" + promos + "\n" + AnneeScolaire + "\n" +
+            return Nom + "\n" + Sujet + "\n" + SujetLibre + "\n" + TypeProjet + "\n" + anneeEtudes + "\n" + matieres + "\n" + promos + "\n" + AnneeScolaire + "\n" +
                 NbPersonnesImpliquees + "\n" + etudiants + "\n" + ChefDeProjet + "\n" + developpeurs + "\n" + maquetteurs + "\n" + poleFacteurHumain + "\n" +
                 Client + "\n" + tuteurs + "\n" + livrables + "\n" + DateDebut.ToLongDateString() + "\n" + DateFin.ToLongDateString() + "\n" + motsClefs;
         }

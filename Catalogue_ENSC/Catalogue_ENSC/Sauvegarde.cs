@@ -34,6 +34,7 @@ namespace Catalogue_ENSC
             monStreamWriter.Close();
         }
 
+
         public void RecupFichierTxtProjet()
         {
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
@@ -41,8 +42,8 @@ namespace Catalogue_ENSC
             StreamReader monStreamReader = new StreamReader("Projets.txt", encoding);
 
             int nbMots = 0;
-            string mot = monStreamReader.ReadLine();
-            int ratio = 19;
+            string mot ="";
+            int ratio = 18;
             string nom="";
             string sujet = "";
             string sujetLibre = "";
@@ -66,34 +67,32 @@ namespace Catalogue_ENSC
             while (mot != null)
             {
                 nbMots++;
+                mot = monStreamReader.ReadLine();
+
                 if (nbMots % ratio == 1)              // Récupération du nom 
                 {
-                    mot = monStreamReader.ReadLine();
                     nom = mot;
                 }
+
                 if (nbMots % ratio == 2)              // Récupération du sujet 
                 {
-                    mot = monStreamReader.ReadLine();
                     sujet = mot;
                 }
 
                 if (nbMots % ratio == 3)             // Récupération de la liberté du sujet
                 {
-                    mot = monStreamReader.ReadLine();
                     sujetLibre = mot;
                 }
 
 
                 if (nbMots % ratio == 4)            // Récupération du type de projet 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringTypeProjet = mot;
                     typeProjet = (TypeProjet)Convert.ChangeType(Repertoire["typeProjet", stringTypeProjet], typeof(TypeProjet));
                 }
 
                 if (nbMots % ratio == 5)              // Récupération des années d'étude
                 {
-                    mot = monStreamReader.ReadLine();
                     stringAnneesEtudes = mot;
                     listStringAnneesEtudes = Program.SeparerChaineDeCaracteres(stringAnneesEtudes);
                     anneesEtudes = new List<int> { };
@@ -105,7 +104,6 @@ namespace Catalogue_ENSC
 
                 if (nbMots % ratio == 6)              // Récupération des matières
                 {
-                    mot = monStreamReader.ReadLine();
                     stringMatieres = mot;
                     matieres = new List<Matiere> { };
                     listStringMatieres = Program.SeparerChaineDeCaracteres(stringMatieres);
@@ -118,14 +116,12 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 7)              // Récupération de l'année scolaire 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringAnneeScolaire = mot;
                     anneeScolaire = (AnneeScolaire)Convert.ChangeType(Repertoire["anneeScolaire", stringAnneeScolaire], typeof(AnneeScolaire));
                 }
 
                 if (nbMots % ratio == 8)              // Récupération des étudiants 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringEtudiants = mot;
                     etudiants = new List<Eleve>();
                     listStringEtudiants = Program.SeparerChaineDeCaracteres(stringEtudiants);
@@ -137,7 +133,6 @@ namespace Catalogue_ENSC
 
                 if (nbMots % ratio == 9)              // Récupération du chef de projet 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringChefDeProjet = mot;
                     stringChefDeProjetRempli = Program.VerifierChampRempli(stringChefDeProjet);
                     if (stringChefDeProjetRempli)
@@ -147,7 +142,6 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 10)              // Récupération des développeurs 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringDeveloppeurs = mot;
                     developpeurs = new List<Eleve>();
                     stringDeveloppeursRempli = Program.VerifierChampRempli(stringDeveloppeurs);
@@ -162,7 +156,6 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 11)              // Récupération des maquetteurs 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringMaquetteurs = mot;
                     maquetteurs = new List<Eleve>();
                     stringMaquetteursRempli = Program.VerifierChampRempli(stringMaquetteurs);
@@ -177,7 +170,7 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 12)              // Récupération du pôle facteur humain 
                 {
-                    mot = monStreamReader.ReadLine();
+
                     stringPoleFacteurHumain = mot;
                     poleFacteurHumain = new List<Eleve>();
                     stringPoleFacteurHumainRempli = Program.VerifierChampRempli(stringPoleFacteurHumain);
@@ -192,7 +185,6 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 13)              // Récupération du client 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringClient = mot;
                     stringClientRempli = Program.VerifierChampRempli(stringClient);
                     if (stringClientRempli)
@@ -206,7 +198,6 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 14)              // Récupération des tuteurs
                 {
-                    mot = monStreamReader.ReadLine();
                     stringTuteurs = mot;
                     tuteurs = new List<AutreIntervenant>();
                     stringTuteursRempli = Program.VerifierChampRempli(stringTuteurs);
@@ -221,7 +212,6 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 15)              // Récupération des livrables 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringLivrables = mot;
                     livrables = new List<Livrable>();
                     listStringLivrables = Program.SeparerChaineDeCaracteres(stringLivrables);
@@ -232,7 +222,6 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 16)              // Récupération de la date de début 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringDateDebut = mot;
                     listStringDateDebut = Program.SeparerChaineDeCaracteres(stringDateDebut);
                     int moisDebut = int.Parse(listStringDateDebut[1]);
@@ -242,7 +231,6 @@ namespace Catalogue_ENSC
                 }
                 if (nbMots % ratio == 17)              // Récupération de la date de fin 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringDateFin = mot;
                     listStringDateFin = Program.SeparerChaineDeCaracteres(stringDateFin);
                     int moisFin = int.Parse(listStringDateFin[1]);
@@ -250,9 +238,8 @@ namespace Catalogue_ENSC
                     int anneeFin = int.Parse(listStringDateFin[2]);
                     dateFin = new DateTime(moisFin, jourFin, anneeFin);
                 }
-                if (nbMots % ratio == 18)              // Récupération des mots-clefs 
+                if (nbMots % ratio == 0)              // Récupération des mots-clefs 
                 {
-                    mot = monStreamReader.ReadLine();
                     stringMotsClefs = mot;
                     motsClefs = Program.SeparerChaineDeCaracteres(stringMotsClefs);
 
