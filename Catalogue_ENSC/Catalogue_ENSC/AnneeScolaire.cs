@@ -11,12 +11,14 @@ namespace Catalogue_ENSC
         public string Nom { get; private set; }
         public int AnneeDebut { get; private set; }
         public int AnneeFin { get; private set; }
+        public Program Program { get; private set; }
 
-        public AnneeScolaire(string nom, int anneeDebut, int anneeFin)
+        public AnneeScolaire(int anneeDebut, int anneeFin, Program program)
         {
-            Nom = nom;
             AnneeDebut = anneeDebut;
             AnneeFin = anneeFin;
+            Nom = anneeDebut.ToString() + "-" + anneeFin;
+            Program = program;
         }
 
         public AnneeScolaire()

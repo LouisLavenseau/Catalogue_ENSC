@@ -9,10 +9,12 @@ namespace Catalogue_ENSC
     class Livrable
     {
         public string Nom { get; private set; }
+        public Program Program { get; private set; }
 
-        public Livrable(string nom)
+        public Livrable(string nom, Program program)
         {
             Nom = nom;
+            Program = program;
         }
 
         public Livrable()

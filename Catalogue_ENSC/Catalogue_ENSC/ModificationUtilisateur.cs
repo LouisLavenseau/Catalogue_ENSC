@@ -22,7 +22,7 @@ namespace Catalogue_ENSC
 
         public void InitialiserCreation()
         {
-            Console.WriteLine("Quel est le type de l'élément que vous voulez ajouter ? Ecrivez projet, type de projet, élève, tuteur, client, \n année d'étude, matière, ou livrable");
+            Console.WriteLine("Quel est le type de l'élément que vous voulez ajouter ? Ecrivez projet, type de projet, élève, professeur, \n intervenant externe, année scolaire, matière, ou livrable");
             string typeElementACreer = Console.ReadLine();
             Console.Clear();
             if (typeElementACreer == "projet")
@@ -33,6 +33,32 @@ namespace Catalogue_ENSC
             {
                 CreerTypeProjet();
             }
+
+            if (typeElementACreer == "élève")
+            {
+                CreerEleve();
+            }
+
+            if (typeElementACreer == "professeur" || typeElementACreer == "intervenant externe")
+            {
+                CreerAutreInvervenant(typeElementACreer);
+            }
+
+            if (typeElementACreer == "livrable")
+            {
+                CreerLivrable();
+            }
+
+            if (typeElementACreer == "matière")
+            {
+                CreerMatiere();
+            }
+
+            if (typeElementACreer == "année scolaire")
+            {
+                CreerAnneeScolaire();
+            }
+
         }
 
         public void CreerProjet()
@@ -627,10 +653,168 @@ namespace Catalogue_ENSC
 
         }
 
+        public void CreerEleve() // Creer un nouvel élève
+
+        {
+
+            Console.WriteLine("Quel est le prénom de l'éléve ? (première lettre en majuscule)");
+            string prenom = Program.EnleverLesEspaces(Console.ReadLine());
+
+            Console.WriteLine("Quel est le nom de l'éléve ? (première lettre en majuscule)");
+            string nom = Program.EnleverLesEspaces(Console.ReadLine());
+
+            Console.WriteLine("Quel est le pronom de l'élève ? Ecrivez il ou elle");
+            string pronom = Program.EnleverLesEspaces(Console.ReadLine());
+
+            Console.WriteLine("Quel est l'année de promotion de l'éléve ?");
+            int promo = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+
+            bool aRedouble = false;
+            int anneeEtudeRedoublement = 0;
+            Console.WriteLine("Est ce que l'éléve a redoublé ? Ecrivez oui ou non");
+            string stringARedouble = Program.EnleverLesEspaces(Console.ReadLine());
+            if (stringARedouble == "oui")
+            {
+                aRedouble = true;
+                Console.WriteLine("En quelle année d'étude l'élève a redoublé ? Ecrivez 1, 2 ou 3");
+                anneeEtudeRedoublement = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+            }
+
+
+            int NbElevesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            Repertoire.RepertoireEleves.Add(new Eleve(prenom, nom, promo, aRedouble, anneeEtudeRedoublement, pronom, Program));
+            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+
+            if (NbTypesProjetsAprès == NbElevesProjetsAvant + 1)
+            {
+                Console.Clear();
+                Console.WriteLine("L'élève a été ajouté avec succès !");
+            }
+
+
+        }
+
+        public void CreerAutreInvervenant(string statut) // Permet d'ajouter un nouveau intervenant 
+        {
+            string nom = "";
+            string prenom = "";
+            string pronom = "";
+
+            if (statut == "professeur")
+            {
+                Console.WriteLine("Quel est le prénom du professeur ? (première lettre en majuscule)");
+                prenom = Program.EnleverLesEspaces(Console.ReadLine());
+
+                Console.WriteLine("Quel est le nom du professeur ? (première lettre en majuscule)");
+                nom = Program.EnleverLesEspaces(Console.ReadLine());
+
+                Console.WriteLine("Quel est le pronom du professeur ? Répondre par il ou elle");
+                pronom = Program.EnleverLesEspaces(Console.ReadLine());
+
+            }
+            if (statut == "intervenant externe")
+            {
+                Console.WriteLine("Quel est le nom de l'intervenant externe ? (première lettre en majuscule)");
+                nom = Program.EnleverLesEspaces(Console.ReadLine());
+
+                Console.WriteLine("Quel est le prénom de l'intervenant externe ? (première lettre en majuscule)");
+                prenom = Program.EnleverLesEspaces(Console.ReadLine());
+
+                Console.WriteLine("Quel est le pronom de l'intervenant externe ? Ecrivez il ou elle");
+                pronom = Program.EnleverLesEspaces(Console.ReadLine());
+            }
+
+
+            int NbAutreIntervantProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            Repertoire.RepertoireAutresIntervenants.Add(new AutreIntervenant(prenom, nom, statut, pronom, Program));
+            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+
+            if (NbTypesProjetsAprès == NbAutreIntervantProjetsAvant + 1)
+            {
+                Console.Clear();
+                if (statut == "professeur")
+                    Console.WriteLine(" Le professeur a été ajouté avec succès !");
+                if (statut == "intervenant externe")
+                    Console.WriteLine("L'intervenant externe a été ajouté avec succés !");
+            }
+
+        }
+
+        public void CreerLivrable()
+        {
+
+            Console.WriteLine("Quel est le nom du livrable ?");
+            string nom = Program.EnleverLesEspaces(Console.ReadLine());
+
+
+            int NbLivrablesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            Repertoire.RepertoireLivrables.Add(new Livrable(nom, Program));
+            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+
+            if (NbTypesProjetsAprès == NbLivrablesProjetsAvant + 1)
+            {
+                Console.Clear();
+                Console.WriteLine(" Le livrable a été ajouté avec succès !");
+
+            }
+        }
+
+        public void CreerMatiere() // Creer une nouvelle matière
+        {
+
+            Console.WriteLine("Quel est le nom de la matière ? Ecrivez comme écrit sur moodle");
+            string nom = Program.EnleverLesEspaces(Console.ReadLine());
+
+            Console.WriteLine("Quel est le code de la matière ? Ecrivez comme écrit sur moodle");
+            string code = Program.EnleverLesEspaces(Console.ReadLine());
+
+            Console.WriteLine("A quelle UE appartient la matière ? Ecrivez comme écrit sur moodle");
+            string ue = Program.EnleverLesEspaces(Console.ReadLine());
+
+            Console.WriteLine("Quel est le code de l'UE ? Ecrivez comme écrit sur moodle");
+            string codeUe = Program.EnleverLesEspaces(Console.ReadLine());
+
+            int NbMatieresProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            Repertoire.RepertoireMatieres.Add(new Matiere(nom, ue, code, codeUe, Program));
+            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+
+            if (NbTypesProjetsAprès == NbMatieresProjetsAvant + 1)
+            {
+                Console.Clear();
+                Console.WriteLine(" La matière a été ajouté avec succès !");
+
+
+            }
+        }
+
+        public void CreerAnneeScolaire() // Creer une année scolaire
+        {
+
+
+            Console.WriteLine("En quelle année commence l'année scolaire ?");
+            int anneeDebut = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+
+            Console.WriteLine("En quelle année finit l'année scolaire ?");
+            int anneeFin = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+
+            int NbAnneeScolaireProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            Repertoire.RepertoireAnneesScolaires.Add(new AnneeScolaire(anneeDebut, anneeFin, Program));
+            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+
+            if (NbTypesProjetsAprès == NbAnneeScolaireProjetsAvant + 1)
+            {
+                Console.Clear();
+                Console.WriteLine("L'année scolaire a été ajouté avec succés !");
+            }
+
+        }
 
 
 
-        public void SupprimerProjet()
+
+
+
+    public void SupprimerProjet()
         { }
         public void SupprimerTypeProjet()
         { }

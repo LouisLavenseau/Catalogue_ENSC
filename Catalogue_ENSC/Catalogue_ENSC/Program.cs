@@ -13,15 +13,15 @@ namespace Catalogue_ENSC
         static void Main(string[] args)
         {
             Program program = new Catalogue_ENSC.Program();
-            Matiere poo = new Matiere("poo", "Sciences fondamentales", "codeMatiere", "codeUe");
+            Matiere poo = new Matiere("poo", "Sciences fondamentales", "codeMatiere", "codeUe", program);
             Eleve llavenseau = new Eleve("Louis", "Lavenseau", 2022, false, 0, "il", program);
             AutreIntervenant bpesquet = new AutreIntervenant("Baptiste","Pesquet", "professeur", "il", program);
             AutreIntervenant eclermont = new AutreIntervenant("Edwige", "Clermont", "professeur", "elle", program);
-            Livrable rapport = new Livrable("rapport");
+            Livrable rapport = new Livrable("rapport", program);
             TypeProjet tp1 = new TypeProjet("tp1", "sujet 1", "impose", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { bpesquet }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
             TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
-            AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020);
-            AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021);
+            AnneeScolaire cetteAnnee = new AnneeScolaire(2019, 2020,program);
+            AnneeScolaire anneeProchaine = new AnneeScolaire(2020, 2021,program);
             Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo },
                 new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee, anneeProchaine }, new List<Livrable> { rapport },
                 new List<string> { }, new List<int> { }, new List<int> { 3, 2, 1 });
@@ -58,6 +58,13 @@ namespace Catalogue_ENSC
             while (fonctionnaliteVoulue != "")
             {
                 Console.Clear();
+                foreach (AnneeScolaire anneeScolaire in repertoire.RepertoireAnneesScolaires)
+                {
+                    Console.WriteLine(anneeScolaire.AnneeDebut);
+                    Console.WriteLine(anneeScolaire.AnneeFin);
+                    Console.WriteLine(anneeScolaire.Nom);
+                    
+                }
                 Console.WriteLine("Voulez-vous consulter le catalogue des projets de l'ENSC (écrivez 1), ajouter un élément au catalogue (écrivez 2) ?, \n "
                     + "modifier un élément du catalogue (écrivez 3) ? Supprimer un élément du catalogue (écrivez 4) ? Ou quitter \n l'application ? (tapez juste entrée)");
                 fonctionnaliteVoulue = Console.ReadLine();
@@ -69,8 +76,9 @@ namespace Catalogue_ENSC
                 }
 
                 if (fonctionnaliteVoulue == "2")
-                {
+                {                 
                     modificationUtilisateur.InitialiserCreation();
+      
                     /*foreach (TypeProjet typeProjet in repertoire.RepertoireTypesProjets)
                     {
                         Console.WriteLine("\n" + typeProjet);

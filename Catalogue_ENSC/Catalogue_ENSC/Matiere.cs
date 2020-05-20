@@ -12,13 +12,15 @@ namespace Catalogue_ENSC
         public string Ue { get; private set; }
         public string Code { get; private set; }
         public string CodeUe { get; private set; }
+        public Program Program { get; private set; }
 
-        public Matiere(string nom, string ue, string code, string codeUe)
+        public Matiere(string nom, string ue, string code, string codeUe, Program program)
         {
             Nom = nom;
             Ue = ue;
             Code = code;
             CodeUe = codeUe;
+            Program = program;
         }
 
         public Matiere()
