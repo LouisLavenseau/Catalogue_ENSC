@@ -14,6 +14,8 @@ namespace Catalogue_ENSC
         {
             Program program = new Catalogue_ENSC.Program();
             Matiere poo = new Matiere("poo", "Sciences fondamentales", "codeMatiere", "codeUe", program);
+            Matiere facteurHumain = new Matiere("facteurHumain", "Sciences fondamentales", "codeMatiere", "codeUe", program);
+            Matiere stats = new Matiere("stats", "Sciences fondamentales", "codeMatiere", "codeUe", program);
             Eleve llavenseau = new Eleve("Louis", "Lavenseau", 2022, false, 0, "il", program);
             AutreIntervenant bpesquet = new AutreIntervenant("Baptiste","Pesquet", "professeur", "il", program);
             AutreIntervenant eclermont = new AutreIntervenant("Edwige", "Clermont", "professeur", "elle", program);
@@ -22,9 +24,9 @@ namespace Catalogue_ENSC
             TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
             AnneeScolaire cetteAnnee = new AnneeScolaire(2019, 2020,program);
             AnneeScolaire anneeProchaine = new AnneeScolaire(2020, 2021,program);
-            Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo },
+            Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo, facteurHumain, stats },
                 new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee, anneeProchaine }, new List<Livrable> { rapport },
-                new List<string> { }, new List<int> { }, new List<int> { 3, 2, 1 });
+                new List<string> {"blabla1", "blabla2", "blabla3" }, new List<int> {2020,2021,2022 }, new List<int> { 3, 2, 1 }, new List<string> { "libre", "liste", "impose" });
             Sauvegarde sauvegarde = new Sauvegarde(repertoire, program);
             ModificationUtilisateur modificationUtilisateur = new ModificationUtilisateur(repertoire, program, sauvegarde);
             RechercheUtilisateur rechercheUtilisateur = new RechercheUtilisateur(repertoire);
@@ -32,39 +34,33 @@ namespace Catalogue_ENSC
             sauvegarde.RecupFichierTxtProjet();
             foreach (Projet projet in repertoire.RepertoireProjets)
             Console.WriteLine(projet);
+            Console.ReadLine();
 
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
-           /* System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
-            StreamReader monStreamReader = new StreamReader("test.txt", encoding);
-            int nbMots = 0;
-            string mot ="";
+            /* System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+             StreamReader monStreamReader = new StreamReader("test.txt", encoding);
+             int nbMots = 0;
+             string mot ="";
 
-            while (mot != null)
-            {
-                mot = monStreamReader.ReadLine();
-                if (nbMots == 0)
-                    Console.WriteLine(mot);
-                /* if (nbMots == 2)
+             while (mot != null)
+             {
+                 mot = monStreamReader.ReadLine();
+                 if (nbMots == 0)
                      Console.WriteLine(mot);
-                nbMots++;
+                 /* if (nbMots == 2)
+                      Console.WriteLine(mot);
+                 nbMots++;
 
-            }
-            // Fermeture du StreamReader (attention très important) 
-            monStreamReader.Close();*/
-            Console.ReadLine(); 
+             }
+             // Fermeture du StreamReader (attention très important) 
+             monStreamReader.Close();*/
+
 
 
             string fonctionnaliteVoulue = null;
             while (fonctionnaliteVoulue != "")
             {
                 Console.Clear();
-                foreach (AnneeScolaire anneeScolaire in repertoire.RepertoireAnneesScolaires)
-                {
-                    Console.WriteLine(anneeScolaire.AnneeDebut);
-                    Console.WriteLine(anneeScolaire.AnneeFin);
-                    Console.WriteLine(anneeScolaire.Nom);
-                    
-                }
                 Console.WriteLine("Voulez-vous consulter le catalogue des projets de l'ENSC (écrivez 1), ajouter un élément au catalogue (écrivez 2) ?, \n "
                     + "modifier un élément du catalogue (écrivez 3) ? Supprimer un élément du catalogue (écrivez 4) ? Ou quitter \n l'application ? (tapez juste entrée)");
                 fonctionnaliteVoulue = Console.ReadLine();
@@ -111,6 +107,12 @@ namespace Catalogue_ENSC
                         Console.WriteLine(eleve.Prenom + "\n" + eleve.Nom + "\n" + eleve.Identifiant + "\n" + eleve.Pronom + "\n" + eleve.Promo + "\n" +
                             eleve.ARedouble + "\n" + eleve.AnneeEtudeRedoublement);
                     }
+
+                    /*        public string Nom { get; private set; }
+                                public int AnneeDebut { get; private set; }
+                                public int AnneeFin { get; private set; }*/
+
+
                     Console.ReadKey();
                 }
 

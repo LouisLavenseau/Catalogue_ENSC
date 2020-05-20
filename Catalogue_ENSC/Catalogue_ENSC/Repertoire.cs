@@ -22,7 +22,7 @@ namespace Catalogue_ENSC
  
         public Repertoire(List<Projet> repertoireProjets,List<TypeProjet> repertoireTypesProjets,List<Matiere> repertoireMatieres, List<Eleve> repertoireEleves,
                 List<AutreIntervenant> repertoireAutresIntervenants,List<AnneeScolaire> repertoireAnneesScolaires, List<Livrable> repertoireLivrables,
-                List<string> repertoireMotsClefs,List<int> repertoirePromos,List<int> repertoireAnneesEtudes)
+                List<string> repertoireMotsClefs,List<int> repertoirePromos,List<int> repertoireAnneesEtudes, List<string> repertoireLibertesDeSujet)
         {
             RepertoireProjets = repertoireProjets;
             RepertoireTypesProjets = repertoireTypesProjets;
@@ -34,6 +34,7 @@ namespace Catalogue_ENSC
             RepertoireMotsClefs = repertoireMotsClefs;
             RepertoirePromos = repertoirePromos;
             RepertoireAnneesEtudes = repertoireAnneesEtudes;
+            RepertoireLibertesDeSujet = repertoireLibertesDeSujet;
         }
 
         public Object this[string repertoire, string nom]

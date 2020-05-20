@@ -18,7 +18,8 @@ namespace Catalogue_ENSC
             Program = program;
             Sauvegarde = sauvegarde;
         }
-
+        // Eleve, AutreIntervenant, LnneeScolaire, Livrable, Matiere
+        //string prenom, string nom, int promo, bool aRedouble, int anneeEtudeRedoublement, string pronom,
 
         public void InitialiserCreation()
         {
@@ -470,9 +471,6 @@ namespace Catalogue_ENSC
 
 
         }
-        // Eleve, AutreIntervenant, LnneeScolaire, Livrable, Matiere
-        //string prenom, string nom, int promo, bool aRedouble, int anneeEtudeRedoublement, string pronom,
-
            
         public void CreerTypeProjet()
         {
@@ -667,7 +665,8 @@ namespace Catalogue_ENSC
             string pronom = Program.EnleverLesEspaces(Console.ReadLine());
 
             Console.WriteLine("Quel est l'année de promotion de l'éléve ?");
-            int promo = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+            string stringPromo = Program.EnleverLesEspaces(Console.ReadLine());
+            int promo = int.Parse(stringPromo);
 
             bool aRedouble = false;
             int anneeEtudeRedoublement = 0;
@@ -754,7 +753,7 @@ namespace Catalogue_ENSC
             if (NbTypesProjetsAprès == NbLivrablesProjetsAvant + 1)
             {
                 Console.Clear();
-                Console.WriteLine(" Le livrable a été ajouté avec succès !");
+                Console.WriteLine(" Le livrable a été ajouté avec succès !");                
 
             }
         }
@@ -792,10 +791,12 @@ namespace Catalogue_ENSC
 
 
             Console.WriteLine("En quelle année commence l'année scolaire ?");
-            int anneeDebut = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+            string stringAnneeDebut = Program.EnleverLesEspaces(Console.ReadLine());
+            int anneeDebut = int.Parse(stringAnneeDebut);
 
             Console.WriteLine("En quelle année finit l'année scolaire ?");
-            int anneeFin = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+            string stringAnneeFin = Program.EnleverLesEspaces(Console.ReadLine());
+            int anneeFin = int.Parse(stringAnneeFin);
 
             int NbAnneeScolaireProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
             Repertoire.RepertoireAnneesScolaires.Add(new AnneeScolaire(anneeDebut, anneeFin, Program));
