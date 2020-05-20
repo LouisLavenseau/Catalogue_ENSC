@@ -21,6 +21,9 @@ namespace Catalogue_ENSC
             CodeUe = codeUe;
         }
 
+        public Matiere()
+        { }
+
         public override string ToString()
         {   
             return Nom;

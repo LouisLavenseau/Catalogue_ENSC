@@ -18,7 +18,8 @@ namespace Catalogue_ENSC
         public List<string> RepertoireMotsClefs { get; set; }
         public List<int> RepertoirePromos { get; set; }
         public List<int> RepertoireAnneesEtudes { get; set; }
-
+        public List<string> RepertoireLibertesDeSujet { get; private set; }
+ 
         public Repertoire(List<Projet> repertoireProjets,List<TypeProjet> repertoireTypesProjets,List<Matiere> repertoireMatieres, List<Eleve> repertoireEleves,
                 List<AutreIntervenant> repertoireAutresIntervenants,List<AnneeScolaire> repertoireAnneesScolaires, List<Livrable> repertoireLivrables,
                 List<string> repertoireMotsClefs,List<int> repertoirePromos,List<int> repertoireAnneesEtudes)
@@ -67,7 +68,7 @@ namespace Catalogue_ENSC
                     {
                         if (eleve.Identifiant == nom)
                             return eleve;
-                        if (eleve.PrenomNom == nom)
+                        if (eleve.Prenom + " " + eleve.Nom == nom)
                             return eleve;
                     }
                     return null;
@@ -76,7 +77,7 @@ namespace Catalogue_ENSC
                 {
                     foreach (AutreIntervenant autreIntervenant in RepertoireAutresIntervenants)
                     {
-                        if (autreIntervenant.PrenomNom == nom)
+                        if (autreIntervenant.Prenom + " " + autreIntervenant.Nom == nom)
                             return autreIntervenant;
                         if (autreIntervenant.Identifiant == nom)
                             return autreIntervenant;

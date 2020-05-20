@@ -11,9 +11,12 @@ namespace Catalogue_ENSC
         public Repertoire Repertoire { get; private set; }
         public Program Program { get; private set; }
         public Sauvegarde Sauvegarde { get; private set; }
-        public ModificationUtilisateur(Repertoire repertoire)
+
+        public ModificationUtilisateur(Repertoire repertoire, Program program, Sauvegarde sauvegarde)
         {
             Repertoire = repertoire;
+            Program = program;
+            Sauvegarde = sauvegarde;
         }
 
 
@@ -61,7 +64,7 @@ namespace Catalogue_ENSC
             string sujetLibre = null;
             if (typeProjet.SujetLibre == null)
             {
-                Console.WriteLine("Le sujet du projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écriez \"listeImpose\") ? ou libre (écrivez \"libre\") ?");
+                Console.WriteLine("Le sujet du projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écrivez \"listeImpose\") ? ou libre (écrivez \"libre\") ?");
                 sujetLibre = Program.EnleverLesEspaces(Console.ReadLine());
             }
             else
@@ -441,6 +444,10 @@ namespace Catalogue_ENSC
 
 
         }
+        // Eleve, AutreIntervenant, LnneeScolaire, Livrable, Matiere
+        //string prenom, string nom, int promo, bool aRedouble, int anneeEtudeRedoublement, string pronom,
+
+           
         public void CreerTypeProjet()
         {
             // NOM projet
@@ -470,7 +477,7 @@ namespace Catalogue_ENSC
             }
 
 
-            //  Demande de la MATIERE
+            //  Demande des matières
             List<Matiere> matieres = new List<Matiere> { };
             Console.WriteLine("Quelles sont la/les matière(s) du projet ? (Rentrez soit le nom de la matière comme orthographiée sur moodle, soit son code)");
             string stringMatieres = Program.EnleverLesEspaces(Console.ReadLine());
@@ -614,6 +621,7 @@ namespace Catalogue_ENSC
             {
                 Console.Clear();
                 Console.WriteLine("Le projet a été ajouté avec succès !");
+
             }
 
 

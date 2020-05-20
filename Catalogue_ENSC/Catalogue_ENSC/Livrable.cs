@@ -15,6 +15,9 @@ namespace Catalogue_ENSC
             Nom = nom;
         }
 
+        public Livrable()
+        { }
+
         public override string ToString()
         {
             return Nom;

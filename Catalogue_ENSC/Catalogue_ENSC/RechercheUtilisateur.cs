@@ -25,15 +25,15 @@ namespace Catalogue_ENSC
             Console.WriteLine("Et une recherche sur quel " + modeDeRecherche + " voulez-vous réaliser ?");
             string instanceDeRecherche = Console.ReadLine();
             Console.Clear();
-            if (modeDeRecherche == "élève")
+            if (modeDeRecherche == "élève") // année d'étude, matiere, liberté de sujet, 
             {
                 ConsulterEleve(instanceDeRecherche);
             }
-            if (modeDeRecherche == "type de projet ") //promos
+            if (modeDeRecherche == "type de projet ") //promos, année de scolarité, matiere
             {
                 ConsulterTypeDeProjet(instanceDeRecherche);
             }
-            if (modeDeRecherche == "promo") //matiere
+            if (modeDeRecherche == "promo") //matiere, année d'étude, liberté de sujet
             {
                 ConsulterPromo(instanceDeRecherche);
             }
@@ -41,7 +41,7 @@ namespace Catalogue_ENSC
             {
                 ConsulterMotClef(instanceDeRecherche);
             }
-            if (modeDeRecherche == "année de scolarité")//année d'étude
+            if (modeDeRecherche == "année de scolarité") //année d'étude, matiere, liberté de sujet
             {
                 ConsulterAnneeScolaire(instanceDeRecherche);
             }
@@ -79,7 +79,7 @@ namespace Catalogue_ENSC
                     foreach (Projet projet in projetsAAfficher)
                     {
                         foreach (int anneeEtudeProjet in projet.AnneesEtudes)
-                        {
+                        { 
                             if (anneeEtudeProjet == anneeEtude)
                             {
                                 if (projet.AnneesEtudes.Count() == 1)
@@ -99,6 +99,7 @@ namespace Catalogue_ENSC
                 }
                 Console.ReadLine();
             }
+            
 
 
         }

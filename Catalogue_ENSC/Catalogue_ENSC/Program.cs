@@ -8,12 +8,14 @@ namespace Catalogue_ENSC
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+            Program program = new Catalogue_ENSC.Program();
             Matiere poo = new Matiere("poo", "Sciences fondamentales", "codeMatiere", "codeUe");
-            Eleve llavenseau = new Eleve("llavenseau", "Louis LAVENSEAU", 2022, false, 0);
-            AutreIntervenant bpesquet = new AutreIntervenant("bpesquet", "Baptiste Pesquet", "professeur");
-            AutreIntervenant eclermont = new AutreIntervenant("eclermont", "Edwige Clermont", "professeur");
+            Eleve llavenseau = new Eleve("Louis", "LAVENSEAU", 2022, false, 0, "il", program);
+            AutreIntervenant bpesquet = new AutreIntervenant("bpesquet", "Baptiste Pesquet", "professeur", "il", program);
+            AutreIntervenant eclermont = new AutreIntervenant("eclermont", "Edwige Clermont", "professeur", "elle", program);
             Livrable rapport = new Livrable("rapport");
             TypeProjet tp1 = new TypeProjet("tp1", "sujet 1", "impose", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { bpesquet }, new List<Livrable> { rapport }, new DateTime(2019, 8, 8), new DateTime(2019, 8, 12), new List<string> { "inventé" });
             TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(2019, 8, 8), new DateTime(2019, 8, 12), new List<string> { "inventé" });
@@ -22,16 +24,17 @@ namespace Catalogue_ENSC
             Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo },
                 new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee, anneeProchaine }, new List<Livrable> { rapport },
                 new List<string> { }, new List<int> { }, new List<int> { 3, 2, 1 });
-            ModificationUtilisateur modificationUtilisateur = new ModificationUtilisateur(repertoire);
+            Sauvegarde sauvegarde = new Sauvegarde(repertoire, program);
+            ModificationUtilisateur modificationUtilisateur = new ModificationUtilisateur(repertoire, program, sauvegarde);
             RechercheUtilisateur rechercheUtilisateur = new RechercheUtilisateur(repertoire);
 
-
+            sauvegarde.RecupFichierTxtProjet();
             string fonctionnaliteVoulue = null;
             while (fonctionnaliteVoulue != "")
             {
                 Console.Clear();
                 Console.WriteLine("Voulez-vous consulter le catalogue des projets de l'ENSC (écrivez 1), ajouter un élément au catalogue (écrivez 2) ?, \n "
-                    + "modifier un élément un élément du catalogue (écrivez 3) ? Supprimer un élément du catalogue (écrivez 4) ? Ou quitter \n l'application ? (tapez juste entrée)");
+                    + "modifier un élément du catalogue (écrivez 3) ? Supprimer un élément du catalogue (écrivez 4) ? Ou quitter \n l'application ? (tapez juste entrée)");
                 fonctionnaliteVoulue = Console.ReadLine();
                 Console.Clear();
 
@@ -59,15 +62,28 @@ namespace Catalogue_ENSC
 
                 if (fonctionnaliteVoulue == "3")
                 {
-                    Console.WriteLine("Quel est le type de l'élément que vous voulez modifier ? Ecrivez projet, type de projet, élève, tuteur, client, \n année d'étude, matière, ou livrable");
+                    Console.WriteLine("Quel est le type de l'élément que vous voulez modifier ? Ecrivez projet, type de projet, élève, professeur, externe, \n année scolaire, matière, ou livrable");
                     string typeElementAModifier = Console.ReadLine();
                     //liste de if (1 par méthode) à faire
+                    if (typeElementAModifier == "élève")
+                    {
+                        Console.WriteLine("Les données de quel élève voulez-vous modifier ?");
+                        string stringEleve = program.EnleverLesEspaces(Console.ReadLine());
+                        Eleve eleve = (Eleve)Convert.ChangeType(repertoire["eleve", stringEleve], typeof(Eleve));
+                        Console.WriteLine("Quelle donnée voulez-vous modifier ? Ecrivez nom, prénom, promo, redoublement, pronom");
+                        string attribut = program.EnleverLesEspaces(Console.ReadLine());
+                        Console.WriteLine("Et quelle nouvelle valeur voulez-vous rentrer ?");
+                        string valeur = program.EnleverLesEspaces(Console.ReadLine());
+                        eleve.ModifierAttribut(attribut, valeur);
+                        Console.WriteLine(eleve.Prenom + "\n" + eleve.Nom + "\n" + eleve.Identifiant + "\n" + eleve.Pronom + "\n" + eleve.Promo + "\n" +
+                            eleve.ARedouble + "\n" + eleve.AnneeEtudeRedoublement);
+                    }
                     Console.ReadKey();
                 }
 
                 if (fonctionnaliteVoulue == "4")
                 {
-                    Console.WriteLine("Quel est le type de l'élément que vous voulez supprimer ? Ecrivez projet, type de projet, élève, tuteur, client, \n année d'étude, matière, ou livrable");
+                    Console.WriteLine("Quel est le type de l'élément que vous voulez supprimer ? Ecrivez projet, type de projet, élève, professeur, externe, \n année d'étude, matière, ou livrable");
                     string typeElementASupprimer = Console.ReadLine();
                     //liste de if (1 par méthode) à faire
                     Console.ReadKey();

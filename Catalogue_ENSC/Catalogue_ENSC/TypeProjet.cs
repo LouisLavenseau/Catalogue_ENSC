@@ -36,6 +36,9 @@ namespace Catalogue_ENSC
             MotsClefs = motsClefs;
         }
 
+        public TypeProjet()
+        { }
+
         public void ModifierTypeProjet()
         {
             //A compléter

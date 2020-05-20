@@ -6,20 +6,29 @@ using System.Threading.Tasks;
 
 namespace Catalogue_ENSC
 {
-    abstract class Personne
+    class Personne
     {
-        public string Identifiant { get; private set; }
-        public string PrenomNom { get; private set; }
+        public string Identifiant { get; protected set; }
+        public string Prenom { get; protected set; }
+        public string Nom { get; protected set; }
+        public string Pronom { get; protected set; }
+        public Program Program { get; private set; }
 
-        public Personne(string identifiant, string prenomNom)
+        public Personne(string prenom, string nom, string pronom, Program program)
         {
-            Identifiant = identifiant;
-            PrenomNom = prenomNom;
+            Prenom = prenom;
+            Nom = nom;
+            Identifiant = prenom[0].ToString().ToLower() + nom.ToLower();
+            Pronom = pronom;
+            Program = program;
         }
+
+        public Personne()
+        { }
 
         public override string ToString()
         {   
-            return PrenomNom;
+            return Prenom + " " + Nom;
         }
     }
 }

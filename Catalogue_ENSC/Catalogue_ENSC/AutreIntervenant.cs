@@ -10,12 +10,13 @@ namespace Catalogue_ENSC
     {
         public string Statut { get; private set; }
 
-        public AutreIntervenant(string identifiant, string prenomNom, string statut) : base(identifiant, prenomNom)
+        public AutreIntervenant(string prenom, string nom, string statut, string pronom, Program program) : base(prenom, nom, pronom, program)
         {
             Statut = statut;
         }
 
-
+        public AutreIntervenant()
+        { }
         public override string ToString()
         {
             return base.ToString();

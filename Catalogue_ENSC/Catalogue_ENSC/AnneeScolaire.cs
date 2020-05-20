@@ -19,6 +19,9 @@ namespace Catalogue_ENSC
             AnneeFin = anneeFin;
         }
 
+        public AnneeScolaire()
+        { }
+
         public override string ToString()
         {  
             return Nom;
