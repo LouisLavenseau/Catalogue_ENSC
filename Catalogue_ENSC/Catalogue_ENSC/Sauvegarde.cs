@@ -212,7 +212,7 @@ namespace Catalogue_ENSC
                     stringChefDeProjetRempli = Program.VerifierChampRempli(stringChefDeProjet);
                     if (stringChefDeProjetRempli)
                     {
-                        chefDeProjet = (Eleve)Convert.ChangeType(Repertoire["intervenant", stringChefDeProjet], typeof(Eleve));
+                        chefDeProjet = (Eleve)Convert.ChangeType(Repertoire["eleve", stringChefDeProjet], typeof(Eleve));
                     }
                 }
                 if (nbMots % ratio == 10)              // Récupération des développeurs 
@@ -225,7 +225,7 @@ namespace Catalogue_ENSC
                         listStringDeveloppeurs = Program.SeparerChaineDeCaracteres(stringDeveloppeurs);
                         foreach (string stringDeveloppeur in listStringDeveloppeurs)
                         {
-                            developpeurs.Add((Eleve)Convert.ChangeType(Repertoire["intervenant", stringDeveloppeur], typeof(Eleve)));
+                            developpeurs.Add((Eleve)Convert.ChangeType(Repertoire["eleve", stringDeveloppeur], typeof(Eleve)));
                         }
                     }
                 }
@@ -239,7 +239,7 @@ namespace Catalogue_ENSC
                         listStringMaquetteurs = Program.SeparerChaineDeCaracteres(stringMaquetteurs);
                         foreach (string stringMaquetteur in listStringMaquetteurs)
                         {
-                            maquetteurs.Add((Eleve)Convert.ChangeType(Repertoire["intervenant", stringMaquetteur], typeof(Eleve)));
+                            maquetteurs.Add((Eleve)Convert.ChangeType(Repertoire["eleve", stringMaquetteur], typeof(Eleve)));
                         }
                     }
                 }
@@ -254,7 +254,7 @@ namespace Catalogue_ENSC
                         listStringPoleFacteurHumain = Program.SeparerChaineDeCaracteres(stringPoleFacteurHumain);
                         foreach (string etudiantPoleFacteurHumain in listStringPoleFacteurHumain)
                         {
-                            poleFacteurHumain.Add((Eleve)Convert.ChangeType(Repertoire["intervenant", etudiantPoleFacteurHumain], typeof(Eleve)));
+                            poleFacteurHumain.Add((Eleve)Convert.ChangeType(Repertoire["eleve", etudiantPoleFacteurHumain], typeof(Eleve)));
                         }
                     }
                 }

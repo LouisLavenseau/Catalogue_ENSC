@@ -24,7 +24,7 @@ namespace Catalogue_ENSC
             TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
             AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020,program);
             AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021,program);
-            Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { /*tp1, tp2*/ }, new List<Matiere> { poo, facteurHumain, stats },
+            Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo, facteurHumain, stats },
                 new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee, anneeProchaine }, new List<Livrable> { rapport },
                 new List<string> {"blabla1", "blabla2", "blabla3" }, new List<int> {2020,2021,2022 }, new List<int> { 3, 2, 1 }, new List<string> { "libre", "liste", "impose" });
             Sauvegarde sauvegarde = new Sauvegarde(repertoire, program);
@@ -69,8 +69,8 @@ namespace Catalogue_ENSC
            // sauvegarde.RecupFichierTxtMatieres();
            // sauvegarde.RecupFichierTxtAutresIntervenants();
             //sauvegarde.RecupFichierTxtEleves();
-            sauvegarde.RecupFichierTxtTypesProjets();
-           /* sauvegarde.RecupFichierTxtProjets();*/
+           // sauvegarde.RecupFichierTxtTypesProjets();
+              sauvegarde.RecupFichierTxtProjets();
 
             /* foreach (AnneeScolaire anneeScolaire in repertoire.RepertoireAnneesScolaires)
              {
@@ -103,7 +103,7 @@ namespace Catalogue_ENSC
 
             }*/
 
-            foreach (AutreIntervenant m in repertoire.RepertoireAutresIntervenants)
+          /*  foreach (AutreIntervenant m in repertoire.RepertoireAutresIntervenants)
             {
                 Console.WriteLine(m.Identifiant);
                 Console.WriteLine(m.Prenom);
@@ -111,9 +111,9 @@ namespace Catalogue_ENSC
                 Console.WriteLine(m.Statut);
                 Console.WriteLine(m.Pronom);
 
-            }
+            }*/
 
-            foreach (TypeProjet m in repertoire.RepertoireTypesProjets)
+          /*  foreach (TypeProjet m in repertoire.RepertoireTypesProjets)
             {
                 Console.WriteLine(m.Nom);
                 Console.WriteLine(m.Sujet);
@@ -131,6 +131,11 @@ namespace Catalogue_ENSC
                 foreach (string e in m.MotsClefs)
                     Console.Write(e + "/");
 
+            }*/
+
+            foreach (Projet m in repertoire.RepertoireProjets)
+            {
+                Console.WriteLine(m);
             }
 
 
