@@ -24,7 +24,7 @@ namespace Catalogue_ENSC
             TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
             AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020,program);
             AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021,program);
-            Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo, facteurHumain, stats },
+            Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { /*tp1, tp2*/ }, new List<Matiere> { poo, facteurHumain, stats },
                 new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee, anneeProchaine }, new List<Livrable> { rapport },
                 new List<string> {"blabla1", "blabla2", "blabla3" }, new List<int> {2020,2021,2022 }, new List<int> { 3, 2, 1 }, new List<string> { "libre", "liste", "impose" });
             Sauvegarde sauvegarde = new Sauvegarde(repertoire, program);
@@ -55,15 +55,88 @@ namespace Catalogue_ENSC
              // Fermeture du StreamReader (attention très important) 
              monStreamReader.Close();*/
 
-           /* llavenseau.ModifierAttribut("nom","Rotto");
-            foreach (Eleve eleve in repertoire.RepertoireEleves)
+            /* llavenseau.ModifierAttribut("nom","Rotto");
+             foreach (Eleve eleve in repertoire.RepertoireEleves)
+             {
+                 Console.WriteLine(eleve.Nom + "\n" + eleve.Identifiant);
+             }
+
+             Console.ReadLine();
+             */
+
+            //sauvegarde.RecupFichierTxtAnneesScolaires();
+            //sauvegarde.RecupFichierTxtLivrables();
+           // sauvegarde.RecupFichierTxtMatieres();
+           // sauvegarde.RecupFichierTxtAutresIntervenants();
+            //sauvegarde.RecupFichierTxtEleves();
+            sauvegarde.RecupFichierTxtTypesProjets();
+           /* sauvegarde.RecupFichierTxtProjets();*/
+
+            /* foreach (AnneeScolaire anneeScolaire in repertoire.RepertoireAnneesScolaires)
+             {
+                 Console.WriteLine(anneeScolaire.Nom);
+                 Console.WriteLine(anneeScolaire.AnneeDebut);
+                 Console.WriteLine(anneeScolaire.AnneeFin);
+
+             }
+             foreach (Livrable livrable in repertoire.RepertoireLivrables)
+             {
+                 Console.WriteLine(livrable.Nom);
+             }*/
+            /* foreach (Matiere m in repertoire.RepertoireMatieres)
+             {
+                 Console.WriteLine(m.Nom);
+                 Console.WriteLine(m.Code);
+                 Console.WriteLine(m.Ue);
+                 Console.WriteLine(m.CodeUe);
+
+             }*/
+
+           /* foreach (Eleve m in repertoire.RepertoireEleves)
             {
-                Console.WriteLine(eleve.Nom + "\n" + eleve.Identifiant);
+                Console.WriteLine(m.Identifiant);
+                Console.WriteLine(m.Prenom);
+                Console.WriteLine(m.Nom);
+                Console.WriteLine(m.ARedouble);
+                Console.WriteLine(m.AnneeEtudeRedoublement);
+                Console.WriteLine(m.Pronom);
+
+            }*/
+
+            foreach (AutreIntervenant m in repertoire.RepertoireAutresIntervenants)
+            {
+                Console.WriteLine(m.Identifiant);
+                Console.WriteLine(m.Prenom);
+                Console.WriteLine(m.Nom);
+                Console.WriteLine(m.Statut);
+                Console.WriteLine(m.Pronom);
+
             }
 
-            Console.ReadLine();
-            */
+            foreach (TypeProjet m in repertoire.RepertoireTypesProjets)
+            {
+                Console.WriteLine(m.Nom);
+                Console.WriteLine(m.Sujet);
+                Console.WriteLine(m.SujetLibre);
+                foreach (int e in m.AnneesEtudes)
+                Console.Write(e + "/");
+                foreach (Matiere e in m.Matieres)
+                    Console.Write(e + "/");
+                foreach (AutreIntervenant a in m.Tuteurs)
+                    Console.Write(a + "/");
+                foreach (Livrable i in m.Livrables)
+                    Console.Write(i + "/");
+                Console.WriteLine(m.DateDebut.ToLongDateString());
+                Console.WriteLine(m.DateFin.ToLongDateString());
+                foreach (string e in m.MotsClefs)
+                    Console.Write(e + "/");
 
+            }
+
+
+
+
+            Console.ReadLine();
 
             string fonctionnaliteVoulue = null;
             while (fonctionnaliteVoulue != "")

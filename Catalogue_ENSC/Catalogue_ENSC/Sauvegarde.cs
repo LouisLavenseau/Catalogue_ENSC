@@ -110,7 +110,7 @@ namespace Catalogue_ENSC
             monStreamWriter.Close();
         }
 
-        public void RecupFichierTxtProjet()
+        public void RecupFichierTxtProjets()
         {
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
             System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
@@ -327,14 +327,14 @@ namespace Catalogue_ENSC
             monStreamReader.Close();
         }
 
-        public void RecupFichierTxtTypeProjet()
+        public void RecupFichierTxtTypesProjets()
         {
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
             System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
             StreamReader monStreamReader = new StreamReader("TypesProjets.txt", encoding);
 
             int nbMots = 0;
-            string mot = monStreamReader.ReadLine();
+            string mot = "";
             int ratio = 10;
             string nom = "";
             string stringSujet = ""; string sujet = ""; bool stringSujetRempli = false;
@@ -507,7 +507,7 @@ namespace Catalogue_ENSC
 
         }
 
-        public void RecupFichierTxtEleve()
+        public void RecupFichierTxtEleves()
         {
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
             System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
@@ -548,8 +548,6 @@ namespace Catalogue_ENSC
                 {
                     stringPromo = mot;
                     promo = int.Parse(stringPromo);
-
-
                 }
 
                 if (nbMots % ratio == 5)
@@ -584,12 +582,12 @@ namespace Catalogue_ENSC
 
         }
 
-        public void RecupFichierTxtLivrable()
+        public void RecupFichierTxtLivrables()
         {
 
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
             System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
-            StreamReader monStreamReader = new StreamReader("Livrables", encoding);
+            StreamReader monStreamReader = new StreamReader("Livrables.txt", encoding);
 
             int nbMots = 0;
             string mot = "";
@@ -609,7 +607,7 @@ namespace Catalogue_ENSC
 
         }
 
-        public void RecupFichierTxtMatiere()
+        public void RecupFichierTxtMatieres()
         {
 
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
@@ -656,11 +654,11 @@ namespace Catalogue_ENSC
 
         }
 
-        public void RecupFichierTxtAutreIntervenant()
+        public void RecupFichierTxtAutresIntervenants()
         {
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
             System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
-            StreamReader monStreamReader = new StreamReader("AutresIntervenants", encoding);
+            StreamReader monStreamReader = new StreamReader("AutresIntervenants.txt", encoding);
 
             int nbMots = 0;
             string mot = "";
@@ -699,14 +697,57 @@ namespace Catalogue_ENSC
                 {
                     pronom = mot;
                     Repertoire.RepertoireAutresIntervenants.Add(new AutreIntervenant(identifiant, nom, prenom, statut, pronom, Program));
-                }
-
-                // Fermeture du StreamReader (attention très important) 
-                monStreamReader.Close();
+                }                
 
             }
+            // Fermeture du StreamReader (attention très important) 
+            monStreamReader.Close();
 
 
         }
+
+        public void RecupFichierTxtAnneesScolaires()
+        {
+            // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
+            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+            StreamReader monStreamReader = new StreamReader("AnneesScolaires.txt", encoding);
+
+            int nbMots = 0;
+            string mot = "";
+            int ratio = 3;
+            string nom = "";
+            string stringAnneeDebut = ""; int anneeFin = 0;
+            string stringAnneeFin = ""; int anneeDebut = 0;
+
+            // Lecture de tous les mots du fichier (un par lignes) 
+            while (mot != null)
+            {
+                nbMots++;
+                mot = monStreamReader.ReadLine();
+                if (nbMots % ratio == 1)              // Récupération nom
+                {
+                    nom = mot;
+                }
+
+                if (nbMots % ratio == 2)              // Récupération nom
+                {
+                    stringAnneeDebut = mot;
+                    anneeDebut = int.Parse(stringAnneeDebut);
+                }
+
+                if (nbMots % ratio == 0)              // Récupération nom
+                {
+                    stringAnneeFin = mot;
+                    anneeFin = int.Parse(stringAnneeFin);           
+                    Repertoire.RepertoireAnneesScolaires.Add(new AnneeScolaire(nom, anneeDebut, anneeFin, Program));
+                }                
+
+            }
+            // Fermeture du StreamReader (attention très important) 
+            monStreamReader.Close();
+
+
+        }
+
     }
 }
