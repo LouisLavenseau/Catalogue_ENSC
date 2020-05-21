@@ -72,11 +72,11 @@ namespace Catalogue_ENSC
             TypeProjet typeProjet = (TypeProjet)Convert.ChangeType(Repertoire["typeProjet", stringTypeProjet], typeof(TypeProjet));
 
             //On récupère le nom du projet
-            string sujet = "";
             Console.WriteLine("Quel est le nom du projet ?");
             string nom = Program.EnleverLesEspaces(Console.ReadLine());
 
             //On récupère le sujet du projet
+            string sujet = "";
             if (typeProjet.Sujet == null)
             {
                 Console.WriteLine("Quel est le sujet du projet ?");
@@ -536,8 +536,8 @@ namespace Catalogue_ENSC
             Console.WriteLine("Le type de projet est-il réalisé par des étudiants en première année (écrivez \"1\"), 2ème année (écrivez \"2\"), ou 3ème année (écrivez \"3\") ? " +
                                       "Séparez par une virgule (ajout d'un espace optionnel) les nombres si des étudiants d'années différentes sont concernés)");
             string stringAnneesEtudes = Program.EnleverLesEspaces(Console.ReadLine());
-            bool stringAnnnesEtudesRempli = Program.VerifierChampRempli(stringAnneesEtudes);
-            if (stringAnnnesEtudesRempli)
+            bool stringAnneesEtudesRempli = Program.VerifierChampRempli(stringAnneesEtudes);
+            if (stringAnneesEtudesRempli)
             {
                 List<string> listStringAnneesEtudes = Program.SeparerChaineDeCaracteres(stringAnneesEtudes);
                 anneesEtudes = new List<int> { };
@@ -662,9 +662,6 @@ namespace Catalogue_ENSC
             Console.WriteLine("Quel est le nom de l'éléve ? (première lettre en majuscule)");
             string nom = Program.EnleverLesEspaces(Console.ReadLine());
 
-            Console.WriteLine("Quel est le pronom de l'élève ? Ecrivez il ou elle");
-            string pronom = Program.EnleverLesEspaces(Console.ReadLine());
-
             Console.WriteLine("Quel est l'année de promotion de l'éléve ?");
             string stringPromo = Program.EnleverLesEspaces(Console.ReadLine());
             int promo = int.Parse(stringPromo);
@@ -684,6 +681,8 @@ namespace Catalogue_ENSC
 
             string identifiant = prenom[0].ToString().ToLower() + nom.ToLower();
 
+            Console.WriteLine("Quel est le pronom de l'élève ? Ecrivez il ou elle");
+            string pronom = Program.EnleverLesEspaces(Console.ReadLine());
 
             int NbElevesElevesAvant = Repertoire.RepertoireEleves.Count();
             Repertoire.RepertoireEleves.Add(new Eleve(identifiant, prenom, nom, promo, aRedouble, anneeEtudeRedoublement, pronom, Program));

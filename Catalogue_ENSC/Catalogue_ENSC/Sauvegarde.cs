@@ -70,7 +70,6 @@ namespace Catalogue_ENSC
             monStreamWriter.Close();
         }
 
-
         public void SauvegarderFichierTxtAnneeScolaire(string nom, string anneeDebut, string anneeFin)
         {
             // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
@@ -110,8 +109,6 @@ namespace Catalogue_ENSC
             // Fermeture du StreamWriter (attention très important) 
             monStreamWriter.Close();
         }
-
-
 
         public void RecupFichierTxtProjet()
         {
@@ -322,18 +319,394 @@ namespace Catalogue_ENSC
                     motsClefs = Program.SeparerChaineDeCaracteres(stringMotsClefs);
 
                     Repertoire.RepertoireProjets.Add(new Projet(nom, sujet, sujetLibre, typeProjet, anneesEtudes, matieres, anneeScolaire, etudiants, chefDeProjet,
-                developpeurs, maquetteurs, poleFacteurHumain, client, tuteurs, livrables, dateDebut, dateFin, motsClefs));
+                    developpeurs, maquetteurs, poleFacteurHumain, client, tuteurs, livrables, dateDebut, dateFin, motsClefs));
                 }
 
             }
             // Fermeture du StreamReader (attention très important) 
             monStreamReader.Close();
         }
-        public void SauvegarderFichierTxtTypeProjet()
-        { }
+
         public void RecupFichierTxtTypeProjet()
-        { }
+        {
+            // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
+            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+            StreamReader monStreamReader = new StreamReader("TypesProjets.txt", encoding);
+
+            int nbMots = 0;
+            string mot = monStreamReader.ReadLine();
+            int ratio = 10;
+            string nom = "";
+            string stringSujet = ""; string sujet = ""; bool stringSujetRempli = false;
+            string stringSujetLibre = ""; string sujetLibre = ""; bool stringSujetLibreRempli = false;
+            string stringAnneesEtudes = ""; List<string> listStringAnneesEtudes = new List<string> { }; List<int> anneesEtudes = new List<int> { }; bool stringAnneesEtudesRempli = false;
+            string stringMatieres; List<string> listStringMatieres = new List<string> { }; List<Matiere> matieres = new List<Matiere> { }; bool stringMatieresRempli = false;
+            string stringTuteurs = ""; List<string> listStringTuteurs = new List<string> { }; List<AutreIntervenant> tuteurs = new List<AutreIntervenant> { }; bool stringTuteursRempli = false;
+            string stringLivrables = ""; List<string> listStringLivrables = new List<string> { }; List<Livrable> livrables = new List<Livrable> { }; bool stringLivrablesRempli = false;
+            string stringDateDebut; List<string> listStringDateDebut = new List<string> { }; DateTime dateDebut = new DateTime(); bool stringDateDebutRempli = false;
+            string stringDateFin; List<string> listStringDateFin = new List<string> { }; DateTime dateFin = new DateTime(); bool stringDateFinRempli = false;
+            string stringMotsClefs; List<string> motsClefs = new List<string> { }; bool stringMotsClefsRempli = false;
+
+            // Lecture de tous les mots du fichier (un par lignes) 
+            while (mot != null)
+            {
+                nbMots++;
+                mot = monStreamReader.ReadLine();
+                if (nbMots % ratio == 1)              // Récupération nom
+                {
+                    nom = mot;
+                }
+                if (nbMots % ratio == 2)              // Récupération Sujet
+                {
+                    sujet = mot;
+                    stringSujetRempli = Program.VerifierChampRempli(stringSujet);
+                    if (stringSujetRempli)
+                    {
+                        sujet = stringSujet;
+                    }
+                }
+
+                if (nbMots % ratio == 3)              // Récupération imposé
+                {
+                    stringSujetLibre = mot;
+                    stringSujetLibreRempli = Program.VerifierChampRempli(stringSujetLibre);
+                    if (stringSujetLibreRempli)
+                    {
+                        sujetLibre = stringSujetLibre;
+                    }
+                }
+
+                if (nbMots % ratio == 4)              // Récupération des années d'étude
+                {
+                    stringAnneesEtudes = mot;
+                    stringAnneesEtudesRempli = Program.VerifierChampRempli(stringAnneesEtudes);
+                    listStringAnneesEtudes = new List<string> { };
+                    if (stringAnneesEtudesRempli)
+                    {
+                        listStringAnneesEtudes = Program.SeparerChaineDeCaracteres(stringAnneesEtudes);
+                        anneesEtudes = new List<int> { };
+                        foreach (string anneeEtude in listStringAnneesEtudes)
+
+                        {
+                            anneesEtudes.Add(int.Parse(anneeEtude));
+                        }
+                    }
+                    else
+                    {
+                        anneesEtudes = null;
+                    }
+                }
+
+                if (nbMots % ratio == 5)              // Récupération des Matieres;
+                {
+
+                    stringMatieres = mot;
+                    stringMatieresRempli = Program.VerifierChampRempli(stringMatieres);
+                    listStringMatieres = new List<string> { };
+                    if (stringMatieresRempli)
+                    {
+                        listStringMatieres = Program.SeparerChaineDeCaracteres(stringMatieres);
+                        foreach (string matiere in listStringMatieres)
+                        {
+                            matieres.Add((Matiere)Convert.ChangeType(Repertoire["matiere", matiere], typeof(Matiere)));
+                        }
+                    }
+                    else
+                    {
+                        matieres = null;
+                    }
+                }
+
+                if (nbMots % ratio == 6)              // Récupération des tuteurs
+
+                {
+                    stringTuteurs = Program.EnleverLesEspaces(Console.ReadLine());
+                    stringTuteursRempli = Program.VerifierChampRempli(stringTuteurs);
+                    listStringTuteurs = new List<string> { };
+                    if (stringTuteursRempli)
+                    {
+                        listStringTuteurs = Program.SeparerChaineDeCaracteres(stringTuteurs);
+                        foreach (string stringTuteur in listStringTuteurs)
+                        {
+                            tuteurs.Add((AutreIntervenant)Convert.ChangeType(Repertoire["autreIntervenant", stringTuteur], typeof(AutreIntervenant)));
+                        }
+
+                    }
+                    else
+                    {
+                        tuteurs = null;
+                    }
+
+                }
+
+                if (nbMots % ratio == 7)              // Récupération des livrables
+                {
+
+                    stringLivrables = Program.EnleverLesEspaces(Console.ReadLine());
+                    stringLivrablesRempli = Program.VerifierChampRempli(stringLivrables);
+                    listStringLivrables = new List<string> { };
+                    if (stringLivrablesRempli)
+                    {
+                        List<string> listeLivrables = Program.SeparerChaineDeCaracteres(stringLivrables);
+                        foreach (string stringLivrable in listeLivrables)
+                        {
+                            livrables.Add((Livrable)Convert.ChangeType(Repertoire["livrable", stringLivrable], typeof(Livrable)));
+                        }
+                    }
+                    else
+                    {
+                        livrables = null;
+                    }
+                }
+
+                if (nbMots % ratio == 8)              // Récupération de la date de début 
+                {
+                    stringDateDebut = mot;
+                    stringDateDebutRempli = Program.VerifierChampRempli(stringDateDebut);
+                    listStringDateDebut = new List<string> { };
+                    if (stringDateDebutRempli)
+                    {
+                        listStringDateDebut = Program.SeparerChaineDeCaracteres(stringDateDebut);
+                        int moisDebut = int.Parse(listStringDateDebut[1]);
+                        int jourDebut = int.Parse(listStringDateDebut[0]);
+                        int anneeDebut = int.Parse(listStringDateDebut[2]);
+                        dateDebut = new DateTime(anneeDebut, moisDebut, jourDebut);
+                    }
+                }
+                if (nbMots % ratio == 9)              // Récupération de la date de fin 
+                {
+                    stringDateFin = mot;
+                    stringDateFinRempli = Program.VerifierChampRempli(stringDateFin);
+                    listStringDateFin = new List<string> { };
+                    if (stringDateFinRempli)
+                    {
+                        listStringDateFin = Program.SeparerChaineDeCaracteres(stringDateFin);
+                        int moisFin = int.Parse(listStringDateFin[1]);
+                        int jourFin = int.Parse(listStringDateFin[0]);
+                        int anneeFin = int.Parse(listStringDateFin[2]);
+                        dateFin = new DateTime(anneeFin, moisFin, jourFin);
+                    }
+                }
+                if (nbMots % ratio == 0)              // Récupération des mots-clefs 
+                {
+                    stringMotsClefs = mot;
+                    stringMotsClefsRempli = Program.VerifierChampRempli(stringMotsClefs);
+                    motsClefs = new List<string> { };
+                    if (stringMotsClefsRempli)
+                    {
+                        motsClefs = Program.SeparerChaineDeCaracteres(stringMotsClefs);
+                    }
+
+                    Repertoire.RepertoireTypesProjets.Add(new TypeProjet(nom, sujet, sujetLibre, anneesEtudes, matieres, tuteurs, livrables, dateDebut, dateFin, motsClefs));
+                }
+
+            }
+
+            // Fermeture du StreamReader (attention très important) 
+            monStreamReader.Close();
+
+        }
+
+        public void RecupFichierTxtEleve()
+        {
+            // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
+            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+            StreamReader monStreamReader = new StreamReader("Eleves.txt", encoding);
+
+            int nbMots = 0;
+            string mot = "";
+            int ratio = 7;
+            string identifiant = "";
+            string prenom = "";
+            string nom = "";
+            string stringPromo = ""; int promo = 0;
+            string stringARedouble; bool aRedouble = false;
+            string stringAnneeEtudeRedoublement = ""; int anneeEtudeRedoublement = 0;
+            string pronom = "";
+
+            // Lecture de tous les mots du fichier (un par lignes) 
+            while (mot != null)
+            {
+                nbMots++;
+                mot = monStreamReader.ReadLine();
+                if (nbMots % ratio == 1)              // Récupération nom
+                {
+                    identifiant = mot;
+                }
+
+                if (nbMots % ratio == 2)
+                {
+                    prenom = mot;
+                }
+
+                if (nbMots % ratio == 3)
+                {
+                    nom = mot;
+                }
+
+                if (nbMots % ratio == 4)
+                {
+                    stringPromo = mot;
+                    promo = int.Parse(stringPromo);
 
 
+                }
+
+                if (nbMots % ratio == 5)
+                {
+                    stringARedouble = mot;
+                    if (stringARedouble == "oui")
+                    {
+                        aRedouble = true;
+
+                    }
+                    else if (stringARedouble == "non")
+                    {
+                        aRedouble = false;
+                    }
+                }
+
+                if (nbMots % ratio == 6)
+                {
+                    stringAnneeEtudeRedoublement = mot;
+                    anneeEtudeRedoublement = int.Parse(stringAnneeEtudeRedoublement);
+
+                }
+
+                if (nbMots % ratio == 0)              // Récupération pronom
+                {
+                    pronom = mot;
+                    Repertoire.RepertoireEleves.Add(new Eleve(identifiant, prenom, nom, promo, aRedouble, anneeEtudeRedoublement, pronom, Program));
+                }
+            }
+
+            monStreamReader.Close();
+
+        }
+
+        public void RecupFichierTxtLivrable()
+        {
+
+            // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
+            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+            StreamReader monStreamReader = new StreamReader("Livrables", encoding);
+
+            int nbMots = 0;
+            string mot = "";
+            string nom = "";
+
+            // Lecture de tous les mots du fichier (un par lignes) 
+            while (mot != null)
+            {
+                nbMots++;
+                mot = monStreamReader.ReadLine();
+                nom = mot;
+                Repertoire.RepertoireLivrables.Add(new Livrable(nom, Program));
+            }
+
+            // Fermeture du StreamReader (attention très important) 
+            monStreamReader.Close();
+
+        }
+
+        public void RecupFichierTxtMatiere()
+        {
+
+            // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
+            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+            StreamReader monStreamReader = new StreamReader("Matieres.txt", encoding);
+
+            int nbMots = 0;
+            string mot = "";
+            int ratio = 4;
+            string nom = "";
+            string code = "";
+            string ue = "";
+            string codeUe = "";
+
+
+            // Lecture de tous les mots du fichier (un par lignes) 
+            while (mot != null)
+            {
+                nbMots++;
+                mot = monStreamReader.ReadLine();
+                if (nbMots % ratio == 1)              // Récupération nom
+                {
+                    nom = mot;
+                }
+
+                if (nbMots % ratio == 2)
+                {
+                    code = mot;
+                }
+                if (nbMots % ratio == 3)              // Récupération nom
+                {
+                    ue = mot;
+                }
+
+                if (nbMots % ratio == 0)
+                {
+                    codeUe = mot;
+                    Repertoire.RepertoireMatieres.Add(new Matiere(nom, code, ue, codeUe, Program));
+                }
+            }
+
+            // Fermeture du StreamReader (attention très important) 
+            monStreamReader.Close();
+
+        }
+
+        public void RecupFichierTxtAutreIntervenant()
+        {
+            // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
+            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+            StreamReader monStreamReader = new StreamReader("AutresIntervenants", encoding);
+
+            int nbMots = 0;
+            string mot = "";
+            int ratio = 5;
+            string identifiant = "";
+            string prenom = "";
+            string nom = "";
+            string statut = "";
+            string pronom = "";
+
+            // Lecture de tous les mots du fichier (un par lignes) 
+            while (mot != null)
+            {
+                nbMots++;
+                mot = monStreamReader.ReadLine();
+                if (nbMots % ratio == 1)              // Récupération nom
+                {
+                    identifiant = mot;
+                }
+
+                if (nbMots % ratio == 2)              // Récupération nom
+                {
+                    prenom = mot;
+                }
+                if (nbMots % ratio == 3)              // Récupération nom
+                {
+                    nom = mot;
+                }
+
+                if (nbMots % ratio == 4)              // Récupération nom
+                {
+                    statut = mot;
+                }
+
+                if (nbMots % ratio == 0)              // Récupération nom
+                {
+                    pronom = mot;
+                    Repertoire.RepertoireAutresIntervenants.Add(new AutreIntervenant(identifiant, nom, prenom, statut, pronom, Program));
+                }
+
+                // Fermeture du StreamReader (attention très important) 
+                monStreamReader.Close();
+
+            }
+
+
+        }
     }
 }
