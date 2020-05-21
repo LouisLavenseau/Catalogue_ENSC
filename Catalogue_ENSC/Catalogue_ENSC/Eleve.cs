@@ -154,6 +154,11 @@ namespace Catalogue_ENSC
             monStreamWriter.Close();
         }
 
+       /* public void Supprimer()
+        {
+
+        }
+        */
         public override string ToString()
         {
             return base.ToString();

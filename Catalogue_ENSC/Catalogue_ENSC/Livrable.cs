@@ -21,6 +21,11 @@ namespace Catalogue_ENSC
         public Livrable()
         { }
 
+        public void Supprimer()
+        {
+            Nom = "";
+        }
+
         public override string ToString()
         {
             return Nom;

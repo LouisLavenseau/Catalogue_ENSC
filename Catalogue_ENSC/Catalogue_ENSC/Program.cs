@@ -13,20 +13,20 @@ namespace Catalogue_ENSC
         static void Main(string[] args)
         {
             Program program = new Catalogue_ENSC.Program();
-            Matiere poo = new Matiere("poo", "codeMatiere", "Sciences fondamentales",  "codeUe", program);
+            Matiere poo = new Matiere("poo", "codeMatiere", "Sciences fondamentales", "codeUe", program);
             Matiere facteurHumain = new Matiere("facteurHumain", "Sciences fondamentales", "codeMatiere", "codeUe", program);
             Matiere stats = new Matiere("stats", "Sciences fondamentales", "codeMatiere", "codeUe", program);
-            Eleve llavenseau = new Eleve("llavenseau","Louis", "Lavenseau", 2022, false, 0, "il", program);
-            AutreIntervenant bpesquet = new AutreIntervenant("bpesquet","Baptiste","Pesquet", "professeur", "il", program);
-            AutreIntervenant eclermont = new AutreIntervenant("eclermont","Edwige", "Clermont", "professeur", "elle", program);
+            Eleve llavenseau = new Eleve("llavenseau", "Louis", "Lavenseau", 2022, false, 0, "il", program);
+            AutreIntervenant bpesquet = new AutreIntervenant("bpesquet", "Baptiste", "Pesquet", "professeur", "il", program);
+            AutreIntervenant eclermont = new AutreIntervenant("eclermont", "Edwige", "Clermont", "professeur", "elle", program);
             Livrable rapport = new Livrable("rapport", program);
             TypeProjet tp1 = new TypeProjet("tp1", "sujet 1", "impose", new List<int> { 1, 2 }, new List<Matiere> { poo }, new List<AutreIntervenant> { bpesquet }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
             TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
-            AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020,program);
-            AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021,program);
+            AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020, program);
+            AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021, program);
             Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo, facteurHumain, stats },
                 new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee, anneeProchaine }, new List<Livrable> { rapport },
-                new List<string> {"blabla1", "blabla2", "blabla3" }, new List<int> {2020,2021,2022 }, new List<int> { 3, 2, 1 }, new List<string> { "libre", "liste", "impose" });
+                new List<string> { "blabla1", "blabla2", "blabla3" }, new List<int> { 2020, 2021, 2022 }, new List<int> { 3, 2, 1 }, new List<string> { "libre", "liste", "impose" });
             Sauvegarde sauvegarde = new Sauvegarde(repertoire, program);
             ModificationUtilisateur modificationUtilisateur = new ModificationUtilisateur(repertoire, program, sauvegarde);
             RechercheUtilisateur rechercheUtilisateur = new RechercheUtilisateur(repertoire);
@@ -66,11 +66,11 @@ namespace Catalogue_ENSC
 
             //sauvegarde.RecupFichierTxtAnneesScolaires();
             //sauvegarde.RecupFichierTxtLivrables();
-           // sauvegarde.RecupFichierTxtMatieres();
-           // sauvegarde.RecupFichierTxtAutresIntervenants();
+            // sauvegarde.RecupFichierTxtMatieres();
+            // sauvegarde.RecupFichierTxtAutresIntervenants();
             //sauvegarde.RecupFichierTxtEleves();
-           // sauvegarde.RecupFichierTxtTypesProjets();
-              sauvegarde.RecupFichierTxtProjets();
+            // sauvegarde.RecupFichierTxtTypesProjets();
+            sauvegarde.RecupFichierTxtProjets();
 
             /* foreach (AnneeScolaire anneeScolaire in repertoire.RepertoireAnneesScolaires)
              {
@@ -92,46 +92,46 @@ namespace Catalogue_ENSC
 
              }*/
 
-           /* foreach (Eleve m in repertoire.RepertoireEleves)
-            {
-                Console.WriteLine(m.Identifiant);
-                Console.WriteLine(m.Prenom);
-                Console.WriteLine(m.Nom);
-                Console.WriteLine(m.ARedouble);
-                Console.WriteLine(m.AnneeEtudeRedoublement);
-                Console.WriteLine(m.Pronom);
+            /* foreach (Eleve m in repertoire.RepertoireEleves)
+             {
+                 Console.WriteLine(m.Identifiant);
+                 Console.WriteLine(m.Prenom);
+                 Console.WriteLine(m.Nom);
+                 Console.WriteLine(m.ARedouble);
+                 Console.WriteLine(m.AnneeEtudeRedoublement);
+                 Console.WriteLine(m.Pronom);
 
-            }*/
+             }*/
 
-          /*  foreach (AutreIntervenant m in repertoire.RepertoireAutresIntervenants)
-            {
-                Console.WriteLine(m.Identifiant);
-                Console.WriteLine(m.Prenom);
-                Console.WriteLine(m.Nom);
-                Console.WriteLine(m.Statut);
-                Console.WriteLine(m.Pronom);
+            /*  foreach (AutreIntervenant m in repertoire.RepertoireAutresIntervenants)
+              {
+                  Console.WriteLine(m.Identifiant);
+                  Console.WriteLine(m.Prenom);
+                  Console.WriteLine(m.Nom);
+                  Console.WriteLine(m.Statut);
+                  Console.WriteLine(m.Pronom);
 
-            }*/
+              }*/
 
-          /*  foreach (TypeProjet m in repertoire.RepertoireTypesProjets)
-            {
-                Console.WriteLine(m.Nom);
-                Console.WriteLine(m.Sujet);
-                Console.WriteLine(m.SujetLibre);
-                foreach (int e in m.AnneesEtudes)
-                Console.Write(e + "/");
-                foreach (Matiere e in m.Matieres)
-                    Console.Write(e + "/");
-                foreach (AutreIntervenant a in m.Tuteurs)
-                    Console.Write(a + "/");
-                foreach (Livrable i in m.Livrables)
-                    Console.Write(i + "/");
-                Console.WriteLine(m.DateDebut.ToLongDateString());
-                Console.WriteLine(m.DateFin.ToLongDateString());
-                foreach (string e in m.MotsClefs)
-                    Console.Write(e + "/");
+            /*  foreach (TypeProjet m in repertoire.RepertoireTypesProjets)
+              {
+                  Console.WriteLine(m.Nom);
+                  Console.WriteLine(m.Sujet);
+                  Console.WriteLine(m.SujetLibre);
+                  foreach (int e in m.AnneesEtudes)
+                  Console.Write(e + "/");
+                  foreach (Matiere e in m.Matieres)
+                      Console.Write(e + "/");
+                  foreach (AutreIntervenant a in m.Tuteurs)
+                      Console.Write(a + "/");
+                  foreach (Livrable i in m.Livrables)
+                      Console.Write(i + "/");
+                  Console.WriteLine(m.DateDebut.ToLongDateString());
+                  Console.WriteLine(m.DateFin.ToLongDateString());
+                  foreach (string e in m.MotsClefs)
+                      Console.Write(e + "/");
 
-            }*/
+              }*/
 
             foreach (Projet m in repertoire.RepertoireProjets)
             {
@@ -158,9 +158,9 @@ namespace Catalogue_ENSC
                 }
 
                 if (fonctionnaliteVoulue == "2")
-                {                 
+                {
                     modificationUtilisateur.InitialiserCreation();
-      
+
                     /*foreach (TypeProjet typeProjet in repertoire.RepertoireTypesProjets)
                     {
                         Console.WriteLine("\n" + typeProjet);
@@ -199,25 +199,67 @@ namespace Catalogue_ENSC
 
 
 
-                        /*        public string Nom { get; private set; }
-                                    public int AnneeDebut { get; private set; }
-                                    public int AnneeFin { get; private set; }*/
+                    /*        public string Nom { get; private set; }
+                                public int AnneeDebut { get; private set; }
+                                public int AnneeFin { get; private set; }*/
 
 
-                        Console.ReadKey();
+                    Console.ReadKey();
                 }
 
                 if (fonctionnaliteVoulue == "4")
                 {
                     Console.WriteLine("Quel est le type de l'élément que vous voulez supprimer ? Ecrivez projet, type de projet, élève, professeur, externe, \n année d'étude, matière, ou livrable");
                     string typeElementASupprimer = Console.ReadLine();
-                    //liste de if (1 par méthode) à faire
-                    Console.ReadKey();
+                    Console.Clear();
+                    Console.WriteLine("Quel est le nom de l'élément que vous voulez supprimer ?");
+                    string nomElementASupprimer = Console.ReadLine();
+                    if (typeElementASupprimer == "projet")
+                    {
+                        Projet projetTest = (Projet)Convert.ChangeType(repertoire["projet", nomElementASupprimer], typeof(Projet));
+                        projetTest.Supprimer();
+                    }
+                    if (typeElementASupprimer == "projet")
+                    {
+                        Projet projetTest = (Projet)Convert.ChangeType(repertoire["projet", nomElementASupprimer], typeof(Projet));
+                        projetTest.Supprimer();
+                        Console.ReadKey();
+                    }
+                    if (typeElementASupprimer == "élève")
+                    {
+                        Eleve eleveTest = (Eleve)Convert.ChangeType(repertoire["eleve", nomElementASupprimer], typeof(Eleve));
+                        eleveTest.Supprimer();
+                        Console.ReadKey();
+                    }
+                    if (typeElementASupprimer == "professeur" || typeElementASupprimer == "intervenant externe")
+                    {
+                        AutreIntervenant autreIntervenantTest = (AutreIntervenant)Convert.ChangeType(repertoire["autreIntervenant", nomElementASupprimer], typeof(AutreIntervenant));
+                        autreIntervenantTest.Supprimer();
+                        Console.ReadKey();
+                    }
+                    if (typeElementASupprimer == "année scolaire")
+                    {
+                        AnneeScolaire anneeScolaireTest = (AnneeScolaire)Convert.ChangeType(repertoire["anneeScolaire", nomElementASupprimer], typeof(AnneeScolaire));
+                        anneeScolaireTest.Supprimer();
+                        Console.ReadKey();
+                    }
+                    if (typeElementASupprimer == "livrable")
+                    {
+                        Livrable livrableTest = (Livrable)Convert.ChangeType(repertoire["livrable", nomElementASupprimer], typeof(Livrable));
+                        livrableTest.Supprimer();
+                        Console.ReadKey();
+                    }
+                    if (typeElementASupprimer == "matiere")
+                    {
+                        Matiere matiereTest = (Matiere)Convert.ChangeType(repertoire["matiere", nomElementASupprimer], typeof(Matiere));
+                        matiereTest.Supprimer();
+                        Console.ReadKey();
+                    }
+
                 }
 
+
             }
-
-
         }
 
         public List<string> SeparerChaineDeCaracteres(string chaineDeCaracteres)

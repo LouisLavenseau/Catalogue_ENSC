@@ -67,6 +67,16 @@ namespace Catalogue_ENSC
             //A compléter
         }
 
+        public void Supprimer()
+        {
+            Nom = "";
+            AnneeScolaire = null;
+            Etudiants = null;
+            TypeProjet = null;
+            Promos = null;
+            MotsClefs = null;
+        }
+
         public override string ToString()
         {
             string anneeEtudes = "";

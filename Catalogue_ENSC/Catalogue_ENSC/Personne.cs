@@ -26,6 +26,11 @@ namespace Catalogue_ENSC
         public Personne()
         { }
 
+        public virtual void Supprimer()
+        {
+            Identifiant = "";
+        }
+
         public override string ToString()
         {   
             return Prenom + " " + Nom;

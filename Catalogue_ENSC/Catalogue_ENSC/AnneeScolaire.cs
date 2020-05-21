@@ -29,5 +29,10 @@ namespace Catalogue_ENSC
         {  
             return Nom;
         }
+
+        public void Supprimer()
+        {
+            Nom = "";
+        }
     }
 }

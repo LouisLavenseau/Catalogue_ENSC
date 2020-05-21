@@ -39,9 +39,10 @@ namespace Catalogue_ENSC
         public TypeProjet()
         { }
 
-        public void ModifierTypeProjet()
+
+        public void Supprimer ()
         {
-            //A compléter
+            Nom = "";
         }
 
         public override string ToString()

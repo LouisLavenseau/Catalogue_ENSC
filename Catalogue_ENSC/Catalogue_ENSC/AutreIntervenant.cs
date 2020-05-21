@@ -22,5 +22,12 @@ namespace Catalogue_ENSC
         {
             return base.ToString();
         }
+
+       /* public void Supprimer()
+        {
+            Identifiant = ""; 
+        }*/
+
+    
     }
 }

@@ -27,7 +27,10 @@ namespace Catalogue_ENSC
         public Matiere()
         { }
 
-        
+        public void Supprimer ()
+        {
+            Nom = "";
+        }
 
         public override string ToString()
         {   
