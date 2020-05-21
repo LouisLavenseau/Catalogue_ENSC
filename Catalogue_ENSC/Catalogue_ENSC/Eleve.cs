@@ -57,11 +57,14 @@ namespace Catalogue_ENSC
             if (attribut == "pronom")
             {
                 Pronom = valeur;
+                place = 7;
+                SauvegarderModifFichierTxtEleve(place, Identifiant, valeur);
             }
             if (attribut == "promo")
             {
                 Promo = int.Parse(valeur);
                 place = 4;
+                SauvegarderModifFichierTxtEleve(place, Identifiant, valeur);
                 Console.WriteLine("La promo change-t-elle parce que l'élève vient de redoubler ? Ecrivez oui ou non :");
                 string reponse = Program.EnleverLesEspaces(Console.ReadLine());
                 if (reponse == "oui")
@@ -71,13 +74,16 @@ namespace Catalogue_ENSC
             if (attribut == "redoublement")
             {
                 place = 5;
+                SauvegarderModifFichierTxtEleve(place, Identifiant, valeur);
                 if (valeur == "oui")
                     ARedouble = true; ;
                 if (valeur == "non")
                     ARedouble = false;
                 Console.WriteLine("En quelle année " + Prenom + " " + Nom + " a-t-" + Pronom + " redoublé ?");
                 place = 6;
-                AnneeEtudeRedoublement = int.Parse(Console.ReadLine());
+                string stringAnneeEtudeRedoublement = Console.ReadLine();
+                AnneeEtudeRedoublement = int.Parse(stringAnneeEtudeRedoublement);
+                SauvegarderModifFichierTxtEleve(place, Identifiant, stringAnneeEtudeRedoublement);
 
             }
 

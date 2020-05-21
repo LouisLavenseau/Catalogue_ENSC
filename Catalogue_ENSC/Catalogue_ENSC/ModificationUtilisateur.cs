@@ -91,7 +91,7 @@ namespace Catalogue_ENSC
             string sujetLibre = null;
             if (typeProjet.SujetLibre == null)
             {
-                Console.WriteLine("Le sujet du projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écrivez \"listeImpose\") ? ou libre (écrivez \"libre\") ?");
+                Console.WriteLine("Le sujet du projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écrivez \"liste\") ? ou libre (écrivez \"libre\") ?");
                 sujetLibre = Program.EnleverLesEspaces(Console.ReadLine());
             }
             else
@@ -363,9 +363,9 @@ namespace Catalogue_ENSC
                 stringDateDebut = Program.EnleverLesEspaces(Console.ReadLine());
                 List<string> listStringDateDebut = Program.SeparerChaineDeCaracteres(stringDateDebut);
                 int moisDebut = int.Parse(listStringDateDebut[1]);
-                int jourDebut = int.Parse(listStringDateDebut[2]);
-                int anneeDebut = int.Parse(listStringDateDebut[0]);
-                dateDebut = new DateTime(moisDebut, jourDebut, anneeDebut);
+                int jourDebut = int.Parse(listStringDateDebut[0]);
+                int anneeDebut = int.Parse(listStringDateDebut[2]);
+                dateDebut = new DateTime(anneeDebut, moisDebut, jourDebut);
             }
             else
             {
@@ -386,9 +386,9 @@ namespace Catalogue_ENSC
                 stringDateFin = Program.EnleverLesEspaces(Console.ReadLine());
                 List<string> listStringDateFin = Program.SeparerChaineDeCaracteres(stringDateFin);
                 int moisFin = int.Parse(listStringDateFin[1]);
-                int jourFin = int.Parse(listStringDateFin[2]);
-                int anneeFin = int.Parse(listStringDateFin[0]);
-                dateFin = new DateTime(moisFin, jourFin, anneeFin);
+                int jourFin = int.Parse(listStringDateFin[0]);
+                int anneeFin = int.Parse(listStringDateFin[2]);
+                dateFin = new DateTime(anneeFin, moisFin, jourFin);
             }
             else
             {
@@ -475,7 +475,7 @@ namespace Catalogue_ENSC
         public void CreerTypeProjet()
         {
             // NOM projet
-            Console.WriteLine("Quel est le nom du projet ?");
+            Console.WriteLine("Quel est le nom du type de projet ?");
             string nom = Program.EnleverLesEspaces(Console.ReadLine());
 
             //Sujet
@@ -492,7 +492,7 @@ namespace Catalogue_ENSC
 
             //sujet imposé 
             string sujetLibre = null;
-            Console.WriteLine("Le sujet du projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écrivez \"listeImpose\") ? ou libre (écrivez \"libre\") ?");
+            Console.WriteLine("Le sujet du type de projet est-il imposé (écrivez \"impose\") ? libre parmi une liste de sujets imposée (écrivez \"liste\") ? ou libre (écrivez \"libre\") ?");
             string stringSujetLibre = Program.EnleverLesEspaces(Console.ReadLine());
             bool stringSujetLibreRempli = Program.VerifierChampRempli(stringSujetLibre);
             if (stringSujetLibreRempli)
@@ -503,7 +503,7 @@ namespace Catalogue_ENSC
 
             //  Demande des matières
             List<Matiere> matieres = new List<Matiere> { };
-            Console.WriteLine("Quelles sont la/les matière(s) du projet ? (Rentrez soit le nom de la matière comme orthographiée sur moodle, soit son code)");
+            Console.WriteLine("Quelles sont la/les matière(s) du type de projet ? (Rentrez soit le nom de la matière comme orthographiée sur moodle, soit son code)");
             string stringMatieres = Program.EnleverLesEspaces(Console.ReadLine());
             bool stringMatieresRempli = Program.VerifierChampRempli(stringMatieres);
             if (stringMatieresRempli)
@@ -533,7 +533,7 @@ namespace Catalogue_ENSC
 
             // ANNEEs ETUDEs
             List<int> anneesEtudes = new List<int> { };
-            Console.WriteLine("Le projet a-t-il été réalisé par des étudiants en première année (écrivez \"1\"), 2ème année (écrivez \"2\"), ou 3ème année (écrivez \"3\") ? " +
+            Console.WriteLine("Le type de projet est-il réalisé par des étudiants en première année (écrivez \"1\"), 2ème année (écrivez \"2\"), ou 3ème année (écrivez \"3\") ? " +
                                       "Séparez par une virgule (ajout d'un espace optionnel) les nombres si des étudiants d'années différentes sont concernés)");
             string stringAnneesEtudes = Program.EnleverLesEspaces(Console.ReadLine());
             bool stringAnnnesEtudesRempli = Program.VerifierChampRempli(stringAnneesEtudes);
@@ -555,7 +555,7 @@ namespace Catalogue_ENSC
 
             //TUTEURS
             List<AutreIntervenant> tuteurs = new List<AutreIntervenant> { };
-            Console.WriteLine("Quel est le nom du client du Tuteur ?");
+            Console.WriteLine("Quels sont les noms des tuteurs ?");
             string stringTuteurs = Program.EnleverLesEspaces(Console.ReadLine());
             bool stringTuteursRempli = Program.VerifierChampRempli(stringTuteurs);
             if (stringTuteursRempli)
@@ -596,38 +596,38 @@ namespace Catalogue_ENSC
 
             //On récupère la date de début du projet
             DateTime dateDebut = new DateTime(2000, 1, 1);
-            Console.WriteLine("Quelle est la date de début du projet ? (écrivez sous la forme \"jour,mois,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"3,2,2019\"");
+            Console.WriteLine("Quelle est la date de début du type projet ? (écrivez sous la forme \"jour,mois,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"3,2,2019\"");
             string stringDateDebut = Program.EnleverLesEspaces(Console.ReadLine());
             bool stringDateDebutRempli = Program.VerifierChampRempli(stringDateDebut);
             if (stringDateDebutRempli)
             {
                 List<string> listStringDateDebut = Program.SeparerChaineDeCaracteres(stringDateDebut);
                 int moisDebut = int.Parse(listStringDateDebut[1]);
-                int jourDebut = int.Parse(listStringDateDebut[2]);
-                int anneeDebut = int.Parse(listStringDateDebut[0]);
-                dateDebut = new DateTime(moisDebut, jourDebut, anneeDebut);
+                int jourDebut = int.Parse(listStringDateDebut[0]);
+                int anneeDebut = int.Parse(listStringDateDebut[2]);
+                dateDebut = new DateTime(anneeDebut, moisDebut, jourDebut);
             }
 
 
 
             //On récupère la date de fin du projet
             DateTime dateFin = new DateTime(2000, 1, 1);
-            Console.WriteLine("Quelle est la date de fin du projet ? (écrivez sous la forme \"jour,mois,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"3,2,2019\"");
+            Console.WriteLine("Quelle est la date de fin du type de projet ? (écrivez sous la forme \"jour,mois,année\" en chiffres (4 chiffres pour l'année). Exemple pour le 3 février 2019 : \"3,2,2019\"");
             string stringDateFin = Program.EnleverLesEspaces(Console.ReadLine());
             bool stringDateFinRempli = Program.VerifierChampRempli(stringDateFin);
             if (stringDateFinRempli)
             {
                 List<string> listStringDateFin = Program.SeparerChaineDeCaracteres(stringDateFin);
                 int moisFin = int.Parse(listStringDateFin[1]);
-                int jourFin = int.Parse(listStringDateFin[2]);
-                int anneeFin = int.Parse(listStringDateFin[0]);
-                dateFin = new DateTime(moisFin, jourFin, anneeFin);
+                int jourFin = int.Parse(listStringDateFin[0]);
+                int anneeFin = int.Parse(listStringDateFin[2]);
+                dateFin = new DateTime(anneeFin, moisFin, jourFin);
             }
 
 
             // Mots-Clefs
             List<string> motsClefs = null;
-            Console.WriteLine("Quels sont les mots clés du projet que tu recherches ? ");
+            Console.WriteLine("Quels sont les mots clés du type de  projet que tu recherches ? ");
             string stringMotsClefs = Program.EnleverLesEspaces(Console.ReadLine());
             bool stringMotsClefsRempli = Program.VerifierChampRempli(stringMotsClefs);
             if (stringMotsClefsRempli)
@@ -639,13 +639,14 @@ namespace Catalogue_ENSC
             int NbTypesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
             Repertoire.RepertoireTypesProjets.Add(new TypeProjet(nom, sujet, sujetLibre, anneesEtudes, matieres, tuteurs, livrables,
                 dateDebut, dateFin, motsClefs));
-            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+            int NbTypesProjetsAprès = Repertoire.RepertoireTypesProjets.Count();
 
             if (NbTypesProjetsAprès == NbTypesProjetsAvant + 1)
             {
                 Console.Clear();
-                Console.WriteLine("Le projet a été ajouté avec succès !");
-
+                Console.WriteLine("Le type de projet a été ajouté avec succès !");
+                Sauvegarde.SauvegarderFichierTxtTypeProjet(nom, stringSujet, stringSujetLibre, stringAnneesEtudes, stringMatieres, stringTuteurs,
+                stringLivrables, stringDateDebut, stringDateFin, stringMotsClefs);
             }
 
 
@@ -669,6 +670,7 @@ namespace Catalogue_ENSC
             int promo = int.Parse(stringPromo);
 
             bool aRedouble = false;
+            string stringAnneeEtudeRedoublement = "0";
             int anneeEtudeRedoublement = 0;
             Console.WriteLine("Est ce que l'éléve a redoublé ? Ecrivez oui ou non");
             string stringARedouble = Program.EnleverLesEspaces(Console.ReadLine());
@@ -676,20 +678,23 @@ namespace Catalogue_ENSC
             {
                 aRedouble = true;
                 Console.WriteLine("En quelle année d'étude l'élève a redoublé ? Ecrivez 1, 2 ou 3");
-                anneeEtudeRedoublement = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
+                stringAnneeEtudeRedoublement = Program.EnleverLesEspaces(Console.ReadLine());
+                anneeEtudeRedoublement = int.Parse(stringAnneeEtudeRedoublement);
             }
 
             string identifiant = prenom[0].ToString().ToLower() + nom.ToLower();
 
 
-            int NbElevesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            int NbElevesElevesAvant = Repertoire.RepertoireEleves.Count();
             Repertoire.RepertoireEleves.Add(new Eleve(identifiant, prenom, nom, promo, aRedouble, anneeEtudeRedoublement, pronom, Program));
-            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+            int NbTypesElevesAprès = Repertoire.RepertoireEleves.Count();
 
-            if (NbTypesProjetsAprès == NbElevesProjetsAvant + 1)
+            if (NbTypesElevesAprès == NbElevesElevesAvant + 1)
             {
                 Console.Clear();
                 Console.WriteLine("L'élève a été ajouté avec succès !");
+                //Sauvegarde CreerEleves
+                Sauvegarde.SauvegarderFichierTxtEleve(identifiant, prenom, nom, stringPromo, stringARedouble, stringAnneeEtudeRedoublement, pronom);
             }
 
 
@@ -727,17 +732,24 @@ namespace Catalogue_ENSC
 
             string identifiant = prenom[0].ToString().ToLower() + nom.ToLower();
 
-            int NbAutreIntervantProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            int NbAutresIntervantsAvant = Repertoire.RepertoireAutresIntervenants.Count();
             Repertoire.RepertoireAutresIntervenants.Add(new AutreIntervenant(identifiant, prenom, nom, statut, pronom, Program));
-            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+            int NbTypesAutresIntervenantsAprès = Repertoire.RepertoireAutresIntervenants.Count();
 
-            if (NbTypesProjetsAprès == NbAutreIntervantProjetsAvant + 1)
+            if (NbTypesAutresIntervenantsAprès == NbAutresIntervantsAvant + 1)
             {
                 Console.Clear();
                 if (statut == "professeur")
+                {
                     Console.WriteLine(" Le professeur a été ajouté avec succès !");
+                    Sauvegarde.SauvegarderFichierTxtAutreIntervenant(identifiant, prenom, nom, statut, pronom);
+                }
+
                 if (statut == "intervenant externe")
+                {
                     Console.WriteLine("L'intervenant externe a été ajouté avec succés !");
+                    Sauvegarde.SauvegarderFichierTxtAutreIntervenant(identifiant, prenom, nom, statut, pronom);
+                }
             }
 
         }
@@ -749,14 +761,15 @@ namespace Catalogue_ENSC
             string nom = Program.EnleverLesEspaces(Console.ReadLine());
 
 
-            int NbLivrablesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            int NbLivrablesAvant = Repertoire.RepertoireLivrables.Count();
             Repertoire.RepertoireLivrables.Add(new Livrable(nom, Program));
-            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+            int NbLivrablesApres = Repertoire.RepertoireLivrables.Count();
 
-            if (NbTypesProjetsAprès == NbLivrablesProjetsAvant + 1)
+            if (NbLivrablesApres == NbLivrablesAvant + 1)
             {
                 Console.Clear();
-                Console.WriteLine(" Le livrable a été ajouté avec succès !");                
+                Console.WriteLine("Le livrable a été ajouté avec succès !");
+                Sauvegarde.SauvegarderFichierTxtLivrable(nom);
 
             }
         }
@@ -776,16 +789,15 @@ namespace Catalogue_ENSC
             Console.WriteLine("Quel est le code de l'UE ? Ecrivez comme écrit sur moodle");
             string codeUe = Program.EnleverLesEspaces(Console.ReadLine());
 
-            int NbMatieresProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            int NbMatieresAvant = Repertoire.RepertoireMatieres.Count();
             Repertoire.RepertoireMatieres.Add(new Matiere(nom, ue, code, codeUe, Program));
-            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+            int NbMatieresAprès = Repertoire.RepertoireMatieres.Count();
 
-            if (NbTypesProjetsAprès == NbMatieresProjetsAvant + 1)
+            if (NbMatieresAprès == NbMatieresAvant + 1)
             {
                 Console.Clear();
-                Console.WriteLine(" La matière a été ajouté avec succès !");
-
-
+                Console.WriteLine("La matière a été ajouté avec succès !");
+                Sauvegarde.SauvegarderFichierTxtMatiere(nom, code, ue, codeUe);
             }
         }
 
@@ -803,22 +815,18 @@ namespace Catalogue_ENSC
 
             string nom = anneeDebut.ToString() + "-" + anneeFin;
 
-            int NbAnneeScolaireProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
+            int NbAnneesScolairesAvant = Repertoire.RepertoireAnneesScolaires.Count();
             Repertoire.RepertoireAnneesScolaires.Add(new AnneeScolaire(nom, anneeDebut, anneeFin, Program));
-            int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
+            int NbAnneesScolairesAprès = Repertoire.RepertoireAnneesScolaires.Count();
 
-            if (NbTypesProjetsAprès == NbAnneeScolaireProjetsAvant + 1)
+            if (NbAnneesScolairesAprès == NbAnneesScolairesAvant + 1)
             {
                 Console.Clear();
                 Console.WriteLine("L'année scolaire a été ajouté avec succés !");
+                Sauvegarde.SauvegarderFichierTxtAnneeScolaire(nom, stringAnneeDebut, stringAnneeFin);
             }
 
         }
-
-
-
-
-
 
     public void SupprimerProjet()
         { }

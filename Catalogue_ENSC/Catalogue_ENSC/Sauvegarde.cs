@@ -34,6 +34,84 @@ namespace Catalogue_ENSC
             monStreamWriter.Close();
         }
 
+        public void SauvegarderFichierTxtEleve(string identifiant, string prenom, string nom, string promo, string ARedouble, string anneeEtudeRedoublement, string pronom)
+        {
+            // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
+            StreamWriter monStreamWriter = File.AppendText("Eleves.txt");
+
+            //on écrit dans le fichier cible
+            monStreamWriter.WriteLine(identifiant + "\n" + prenom + "\n" + nom + "\n" + promo + "\n" + ARedouble + "\n" + anneeEtudeRedoublement + "\n" + pronom);
+
+            // Fermeture du StreamWriter (attention très important) 
+            monStreamWriter.Close();
+        }
+
+        public void SauvegarderFichierTxtAutreIntervenant(string identifiant, string prenom, string nom, string statut, string pronom)
+        {
+            // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
+            StreamWriter monStreamWriter = File.AppendText("AutresIntervenants.txt");
+
+            //on écrit dans le fichier cible
+            monStreamWriter.WriteLine(identifiant + "\n" + prenom + "\n" + nom + "\n" + statut + "\n" + pronom);
+
+            // Fermeture du StreamWriter (attention très important) 
+            monStreamWriter.Close();
+        }
+
+        public void SauvegarderFichierTxtMatiere(string nom, string code, string ue, string codeUe)
+        {
+            // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
+            StreamWriter monStreamWriter = File.AppendText("Matieres.txt");
+
+            //on écrit dans le fichier cible
+            monStreamWriter.WriteLine(nom + "\n" + code + "\n" + ue + "\n" + codeUe);
+
+            // Fermeture du StreamWriter (attention très important) 
+            monStreamWriter.Close();
+        }
+
+
+        public void SauvegarderFichierTxtAnneeScolaire(string nom, string anneeDebut, string anneeFin)
+        {
+            // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
+            StreamWriter monStreamWriter = File.AppendText("AnneesScolaires.txt");
+
+            //on écrit dans le fichier cible
+            monStreamWriter.WriteLine(nom + "\n" + anneeDebut + "\n" + anneeFin);
+
+            // Fermeture du StreamWriter (attention très important) 
+            monStreamWriter.Close();
+        }
+
+        public void SauvegarderFichierTxtLivrable(string nom)
+        {
+            // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
+            StreamWriter monStreamWriter = File.AppendText("Livrables.txt");
+
+            //on écrit dans le fichier cible
+            monStreamWriter.WriteLine(nom);
+
+            // Fermeture du StreamWriter (attention très important) 
+            monStreamWriter.Close();
+        }
+
+        public void SauvegarderFichierTxtTypeProjet(string nom, string sujet, string sujetLibre, string anneesEtudes, string matieres, string tuteurs,
+           string livrables, string dateDebut, string dateFin, string motsClefs)
+        {
+            // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
+            StreamWriter monStreamWriter = File.AppendText("TypesProjets.txt");
+
+            Console.WriteLine("yo");
+
+            //on écrit dans le fichier cible
+            monStreamWriter.WriteLine("yo " + nom + "\n" + sujet + "\n" + sujetLibre + "\n" + anneesEtudes + "\n" + matieres + "\n"
+            + "\n" + tuteurs + "\n" + livrables + "\n" + dateDebut + "\n" + dateFin + "\n" + motsClefs);
+
+            // Fermeture du StreamWriter (attention très important) 
+            monStreamWriter.Close();
+        }
+
+
 
         public void RecupFichierTxtProjet()
         {
@@ -256,6 +334,6 @@ namespace Catalogue_ENSC
         public void RecupFichierTxtTypeProjet()
         { }
 
-        
+
     }
 }

@@ -15,7 +15,7 @@ namespace Catalogue_ENSC
         public string CodeUe { get; private set; }
         public Program Program { get; private set; }
 
-        public Matiere(string nom, string ue, string code, string codeUe, Program program)
+        public Matiere(string nom, string code, string ue, string codeUe, Program program)
         {
             Nom = nom;
             Ue = ue;

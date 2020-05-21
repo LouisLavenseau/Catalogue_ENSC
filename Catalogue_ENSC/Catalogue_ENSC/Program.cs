@@ -13,7 +13,7 @@ namespace Catalogue_ENSC
         static void Main(string[] args)
         {
             Program program = new Catalogue_ENSC.Program();
-            Matiere poo = new Matiere("poo", "Sciences fondamentales", "codeMatiere", "codeUe", program);
+            Matiere poo = new Matiere("poo", "codeMatiere", "Sciences fondamentales",  "codeUe", program);
             Matiere facteurHumain = new Matiere("facteurHumain", "Sciences fondamentales", "codeMatiere", "codeUe", program);
             Matiere stats = new Matiere("stats", "Sciences fondamentales", "codeMatiere", "codeUe", program);
             Eleve llavenseau = new Eleve("llavenseau","Louis", "Lavenseau", 2022, false, 0, "il", program);
@@ -55,14 +55,14 @@ namespace Catalogue_ENSC
              // Fermeture du StreamReader (attention très important) 
              monStreamReader.Close();*/
 
-            llavenseau.ModifierAttribut("nom","Rotto");
+           /* llavenseau.ModifierAttribut("nom","Rotto");
             foreach (Eleve eleve in repertoire.RepertoireEleves)
             {
                 Console.WriteLine(eleve.Nom + "\n" + eleve.Identifiant);
             }
 
             Console.ReadLine();
-
+            */
 
 
             string fonctionnaliteVoulue = null;
@@ -106,11 +106,14 @@ namespace Catalogue_ENSC
                     {
                         Console.WriteLine("Les données de quel élève voulez-vous modifier ?");
                         string stringEleve = program.EnleverLesEspaces(Console.ReadLine());
+                        Console.Clear();
                         Eleve eleve = (Eleve)Convert.ChangeType(repertoire["eleve", stringEleve], typeof(Eleve));
                         Console.WriteLine("Quelle donnée voulez-vous modifier ? Ecrivez nom, prénom, promo, redoublement, pronom");
                         string attribut = program.EnleverLesEspaces(Console.ReadLine());
+                        Console.Clear();
                         Console.WriteLine("Et quelle nouvelle valeur voulez-vous rentrer ?");
                         string valeur = program.EnleverLesEspaces(Console.ReadLine());
+                        Console.Clear();
                         eleve.ModifierAttribut(attribut, valeur);
                         Console.WriteLine(eleve.Prenom + "\n" + eleve.Nom + "\n" + eleve.Identifiant + "\n" + eleve.Pronom + "\n" + eleve.Promo + "\n" +
                             eleve.ARedouble + "\n" + eleve.AnneeEtudeRedoublement);
