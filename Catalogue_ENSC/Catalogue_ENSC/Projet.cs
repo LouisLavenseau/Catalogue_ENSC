@@ -79,6 +79,13 @@ namespace Catalogue_ENSC
 
         public override string ToString()
         {
+            string sujetLibre = "";
+            if (SujetLibre == "libre")
+                sujetLibre = "sujet libre";
+            if (SujetLibre == "impose")
+                sujetLibre = "sujet imposé";
+            if (SujetLibre == "liste")
+                sujetLibre = "sujet libre parmi une liste de sujets imposés";
             string anneeEtudes = "";
             bool premierMotPasse = false;
             foreach (int anneeEtude in AnneesEtudes)
@@ -228,9 +235,11 @@ namespace Catalogue_ENSC
                     premierMotPasse = true;
                 }
             }
-            return Nom + "\n" + Sujet + "\n" + SujetLibre + "\n" + TypeProjet + "\n" + anneeEtudes + "\n" + matieres + "\n" + promos + "\n" + AnneeScolaire + "\n" +
-                NbPersonnesImpliquees + "\n" + etudiants + "\n" + ChefDeProjet + "\n" + developpeurs + "\n" + maquetteurs + "\n" + poleFacteurHumain + "\n" +
-                Client + "\n" + tuteurs + "\n" + livrables + "\n" + DateDebut.ToLongDateString() + "\n" + DateFin.ToLongDateString() + "\n" + motsClefs;
+            return "Nom : " + Nom + "\n" + "Sujet : " +Sujet + "\n" + "Liberté du sujet " + sujetLibre + "\n" + "Type du projet" + TypeProjet + "\n" + "Année(s) d'étude " + anneeEtudes + "\n" + "Matières : " 
+                + matieres + "\n" + "Années de promotion : " + promos + "\n" + "Année scolaire : " + AnneeScolaire + "\n" + "Nombre de personnes impliquées : " + NbPersonnesImpliquees + 
+                "\n" + "Etudiants : " + etudiants + "\n" + "Chef de projet : " + ChefDeProjet + "\n" + "Developpeurs : " + developpeurs + "\n" + "Maquetteurs : " + maquetteurs + "\n" + "Pole facteur humain : " + 
+                poleFacteurHumain + "\n" + "Client : " + Client + "\n" + "Tuteurs : " + tuteurs + "\n" + "Livrables : " + livrables + "\n" + "Date de début : " + DateDebut.ToLongDateString() + "\n" +
+                "Date de fin : " + DateFin.ToLongDateString() + "\n" + "Mots clés : " + motsClefs;
         }
     }
 }

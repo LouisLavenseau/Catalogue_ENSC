@@ -133,16 +133,13 @@ namespace Catalogue_ENSC
 
               }*/
 
-            foreach (Projet m in repertoire.RepertoireProjets)
+           /* foreach (Projet m in repertoire.RepertoireProjets)
             {
                 Console.WriteLine(m);
             }
 
-
-
-
             Console.ReadLine();
-
+            */
             string fonctionnaliteVoulue = null;
             while (fonctionnaliteVoulue != "")
             {
