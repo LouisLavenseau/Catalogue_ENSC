@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Catalogue_ENSC
 {
@@ -10,7 +11,7 @@ namespace Catalogue_ENSC
     {
         public string Statut { get; private set; }
 
-        public AutreIntervenant(string prenom, string nom, string statut, string pronom, Program program) : base(prenom, nom, pronom, program)
+        public AutreIntervenant(string identifiant, string prenom, string nom, string statut, string pronom, Program program) : base(identifiant, prenom, nom, pronom, program)
         {
             Statut = statut;
         }

@@ -28,7 +28,7 @@ namespace Catalogue_ENSC
             //on écrit dans le fichier cible
             monStreamWriter.WriteLine(nom + "\n" + sujet + "\n" + sujetLibre + "\n" + typeProjet + "\n" + anneesEtudes + "\n" + matieres + "\n" +
                  anneeScolaire + "\n" + etudiants + "\n" + chefDeProjet + "\n" + developpeurs + "\n" + maquetteurs + "\n" + poleFacteurHumain + "\n" +
-                 client + "\n" + tuteurs + "\n" + livrables + "\n" + dateDebut + "\n" + dateFin + "\n" + motsClefs);   
+                 client + "\n" + tuteurs + "\n" + livrables + "\n" + dateDebut + "\n" + dateFin + "\n" + motsClefs);
 
             // Fermeture du StreamWriter (attention très important) 
             monStreamWriter.Close();
@@ -42,14 +42,14 @@ namespace Catalogue_ENSC
             StreamReader monStreamReader = new StreamReader("Projets.txt", encoding);
 
             int nbMots = 0;
-            string mot ="";
+            string mot = "";
             int ratio = 18;
-            string nom="";
+            string nom = "";
             string sujet = "";
             string sujetLibre = "";
             string stringTypeProjet = ""; TypeProjet typeProjet = new TypeProjet();
-            string stringAnneesEtudes = ""; List<string> listStringAnneesEtudes; List<int> anneesEtudes= new List<int> { };
-            string stringMatieres = ""; List<string> listStringMatieres; List<Matiere> matieres = new List<Matiere> { }; 
+            string stringAnneesEtudes = ""; List<string> listStringAnneesEtudes; List<int> anneesEtudes = new List<int> { };
+            string stringMatieres = ""; List<string> listStringMatieres; List<Matiere> matieres = new List<Matiere> { };
             string stringAnneeScolaire = ""; AnneeScolaire anneeScolaire = new AnneeScolaire();
             string stringEtudiants = ""; List<string> listStringEtudiants; List<Eleve> etudiants = new List<Eleve> { };
             string stringChefDeProjet = ""; bool stringChefDeProjetRempli; Eleve chefDeProjet = new Eleve();
@@ -225,8 +225,8 @@ namespace Catalogue_ENSC
                     stringDateDebut = mot;
                     listStringDateDebut = Program.SeparerChaineDeCaracteres(stringDateDebut);
                     int moisDebut = int.Parse(listStringDateDebut[1]);
-                    int jourDebut = int.Parse(listStringDateDebut[0]);
-                    int anneeDebut = int.Parse(listStringDateDebut[2]);
+                    int jourDebut = int.Parse(listStringDateDebut[2]);
+                    int anneeDebut = int.Parse(listStringDateDebut[0]);
                     dateDebut = new DateTime(moisDebut, jourDebut, anneeDebut);
                 }
                 if (nbMots % ratio == 17)              // Récupération de la date de fin 
@@ -234,8 +234,8 @@ namespace Catalogue_ENSC
                     stringDateFin = mot;
                     listStringDateFin = Program.SeparerChaineDeCaracteres(stringDateFin);
                     int moisFin = int.Parse(listStringDateFin[1]);
-                    int jourFin = int.Parse(listStringDateFin[0]);
-                    int anneeFin = int.Parse(listStringDateFin[2]);
+                    int jourFin = int.Parse(listStringDateFin[2]);
+                    int anneeFin = int.Parse(listStringDateFin[0]);
                     dateFin = new DateTime(moisFin, jourFin, anneeFin);
                 }
                 if (nbMots % ratio == 0)              // Récupération des mots-clefs 
@@ -246,7 +246,7 @@ namespace Catalogue_ENSC
                     Repertoire.RepertoireProjets.Add(new Projet(nom, sujet, sujetLibre, typeProjet, anneesEtudes, matieres, anneeScolaire, etudiants, chefDeProjet,
                 developpeurs, maquetteurs, poleFacteurHumain, client, tuteurs, livrables, dateDebut, dateFin, motsClefs));
                 }
-          
+
             }
             // Fermeture du StreamReader (attention très important) 
             monStreamReader.Close();
@@ -255,5 +255,7 @@ namespace Catalogue_ENSC
         { }
         public void RecupFichierTxtTypeProjet()
         { }
+
+        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Catalogue_ENSC
 {
@@ -20,7 +21,7 @@ namespace Catalogue_ENSC
         public DateTime DateFin { get; private set; }
         public List<string> MotsClefs { get; private set; }
 
-        public TypeProjet(string nom, string sujet, string sujetLibre, List<int> anneesEtudes, List<Matiere> matieres, int nbPersonnesImpliquees, List<AutreIntervenant> tuteurs,
+        public TypeProjet(string nom, string sujet, string sujetLibre, List<int> anneesEtudes, List<Matiere> matieres,  List<AutreIntervenant> tuteurs,
             List<Livrable> livrables, DateTime dateDebut, DateTime dateFin, List<string> motsClefs)
         {
             Nom = nom;
@@ -28,7 +29,6 @@ namespace Catalogue_ENSC
             SujetLibre = sujetLibre;
             AnneesEtudes = anneesEtudes;
             Matieres = matieres;
-            NbPersonnesImpliquees = nbPersonnesImpliquees;
             Tuteurs = tuteurs;
             Livrables = livrables;
             DateDebut = dateDebut;

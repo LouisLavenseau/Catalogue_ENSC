@@ -16,14 +16,14 @@ namespace Catalogue_ENSC
             Matiere poo = new Matiere("poo", "Sciences fondamentales", "codeMatiere", "codeUe", program);
             Matiere facteurHumain = new Matiere("facteurHumain", "Sciences fondamentales", "codeMatiere", "codeUe", program);
             Matiere stats = new Matiere("stats", "Sciences fondamentales", "codeMatiere", "codeUe", program);
-            Eleve llavenseau = new Eleve("Louis", "Lavenseau", 2022, false, 0, "il", program);
-            AutreIntervenant bpesquet = new AutreIntervenant("Baptiste","Pesquet", "professeur", "il", program);
-            AutreIntervenant eclermont = new AutreIntervenant("Edwige", "Clermont", "professeur", "elle", program);
+            Eleve llavenseau = new Eleve("llavenseau","Louis", "Lavenseau", 2022, false, 0, "il", program);
+            AutreIntervenant bpesquet = new AutreIntervenant("bpesquet","Baptiste","Pesquet", "professeur", "il", program);
+            AutreIntervenant eclermont = new AutreIntervenant("eclermont","Edwige", "Clermont", "professeur", "elle", program);
             Livrable rapport = new Livrable("rapport", program);
-            TypeProjet tp1 = new TypeProjet("tp1", "sujet 1", "impose", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { bpesquet }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
-            TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, 2, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
-            AnneeScolaire cetteAnnee = new AnneeScolaire(2019, 2020,program);
-            AnneeScolaire anneeProchaine = new AnneeScolaire(2020, 2021,program);
+            TypeProjet tp1 = new TypeProjet("tp1", "sujet 1", "impose", new List<int> { 1, 2 }, new List<Matiere> { poo }, new List<AutreIntervenant> { bpesquet }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
+            TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> { poo }, new List<AutreIntervenant> { eclermont }, new List<Livrable> { rapport }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
+            AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020,program);
+            AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021,program);
             Repertoire repertoire = new Repertoire(new List<Projet> { }, new List<TypeProjet> { tp1, tp2 }, new List<Matiere> { poo, facteurHumain, stats },
                 new List<Eleve> { llavenseau }, new List<AutreIntervenant> { bpesquet, eclermont }, new List<AnneeScolaire> { cetteAnnee, anneeProchaine }, new List<Livrable> { rapport },
                 new List<string> {"blabla1", "blabla2", "blabla3" }, new List<int> {2020,2021,2022 }, new List<int> { 3, 2, 1 }, new List<string> { "libre", "liste", "impose" });
@@ -31,10 +31,10 @@ namespace Catalogue_ENSC
             ModificationUtilisateur modificationUtilisateur = new ModificationUtilisateur(repertoire, program, sauvegarde);
             RechercheUtilisateur rechercheUtilisateur = new RechercheUtilisateur(repertoire);
 
-            sauvegarde.RecupFichierTxtProjet();
+            /*sauvegarde.RecupFichierTxtProjet();
             foreach (Projet projet in repertoire.RepertoireProjets)
             Console.WriteLine(projet);
-            Console.ReadLine();
+            Console.ReadLine();*/
 
             // Création d'une instance de StreamReader pour permettre la lecture de notre fichier source 
             /* System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
@@ -54,6 +54,14 @@ namespace Catalogue_ENSC
              }
              // Fermeture du StreamReader (attention très important) 
              monStreamReader.Close();*/
+
+            llavenseau.ModifierAttribut("nom","Rotto");
+            foreach (Eleve eleve in repertoire.RepertoireEleves)
+            {
+                Console.WriteLine(eleve.Nom + "\n" + eleve.Identifiant);
+            }
+
+            Console.ReadLine();
 
 
 
@@ -108,12 +116,14 @@ namespace Catalogue_ENSC
                             eleve.ARedouble + "\n" + eleve.AnneeEtudeRedoublement);
                     }
 
-                    /*        public string Nom { get; private set; }
-                                public int AnneeDebut { get; private set; }
-                                public int AnneeFin { get; private set; }*/
 
 
-                    Console.ReadKey();
+                        /*        public string Nom { get; private set; }
+                                    public int AnneeDebut { get; private set; }
+                                    public int AnneeFin { get; private set; }*/
+
+
+                        Console.ReadKey();
                 }
 
                 if (fonctionnaliteVoulue == "4")

@@ -14,11 +14,11 @@ namespace Catalogue_ENSC
         public string Pronom { get; protected set; }
         public Program Program { get; private set; }
 
-        public Personne(string prenom, string nom, string pronom, Program program)
+        public Personne(string identifiant, string prenom, string nom, string pronom, Program program)
         {
             Prenom = prenom;
             Nom = nom;
-            Identifiant = prenom[0].ToString().ToLower() + nom.ToLower();
+            Identifiant = identifiant;
             Pronom = pronom;
             Program = program;
         }

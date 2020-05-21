@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Catalogue_ENSC
 {
@@ -13,11 +14,11 @@ namespace Catalogue_ENSC
         public int AnneeFin { get; private set; }
         public Program Program { get; private set; }
 
-        public AnneeScolaire(int anneeDebut, int anneeFin, Program program)
+        public AnneeScolaire(string nom, int anneeDebut, int anneeFin, Program program)
         {
+            Nom = nom;
             AnneeDebut = anneeDebut;
             AnneeFin = anneeFin;
-            Nom = anneeDebut.ToString() + "-" + anneeFin;
             Program = program;
         }
 

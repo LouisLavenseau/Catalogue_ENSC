@@ -363,8 +363,8 @@ namespace Catalogue_ENSC
                 stringDateDebut = Program.EnleverLesEspaces(Console.ReadLine());
                 List<string> listStringDateDebut = Program.SeparerChaineDeCaracteres(stringDateDebut);
                 int moisDebut = int.Parse(listStringDateDebut[1]);
-                int jourDebut = int.Parse(listStringDateDebut[0]);
-                int anneeDebut = int.Parse(listStringDateDebut[2]);
+                int jourDebut = int.Parse(listStringDateDebut[2]);
+                int anneeDebut = int.Parse(listStringDateDebut[0]);
                 dateDebut = new DateTime(moisDebut, jourDebut, anneeDebut);
             }
             else
@@ -386,8 +386,8 @@ namespace Catalogue_ENSC
                 stringDateFin = Program.EnleverLesEspaces(Console.ReadLine());
                 List<string> listStringDateFin = Program.SeparerChaineDeCaracteres(stringDateFin);
                 int moisFin = int.Parse(listStringDateFin[1]);
-                int jourFin = int.Parse(listStringDateFin[0]);
-                int anneeFin = int.Parse(listStringDateFin[2]);
+                int jourFin = int.Parse(listStringDateFin[2]);
+                int anneeFin = int.Parse(listStringDateFin[0]);
                 dateFin = new DateTime(moisFin, jourFin, anneeFin);
             }
             else
@@ -520,14 +520,14 @@ namespace Catalogue_ENSC
             }
 
             // Nombre de personne implique
-            int nbPersonnesImpliquees = 0;
+           /* int nbPersonnesImpliquees = 0;
             Console.WriteLine("Combien de personnes sont impliquées dans le projet (Veuillez rentrer un nombre entier)");
             string stringNbPersonnesImpliquees = Console.ReadLine();
             bool stringNbpersonnesImpliqueesRempli = Program.VerifierChampRempli(stringNbPersonnesImpliquees);
             if (stringNbpersonnesImpliqueesRempli)
             {
                 nbPersonnesImpliquees = int.Parse(stringNbPersonnesImpliquees);
-            }
+            }*/
 
 
 
@@ -603,8 +603,8 @@ namespace Catalogue_ENSC
             {
                 List<string> listStringDateDebut = Program.SeparerChaineDeCaracteres(stringDateDebut);
                 int moisDebut = int.Parse(listStringDateDebut[1]);
-                int jourDebut = int.Parse(listStringDateDebut[0]);
-                int anneeDebut = int.Parse(listStringDateDebut[2]);
+                int jourDebut = int.Parse(listStringDateDebut[2]);
+                int anneeDebut = int.Parse(listStringDateDebut[0]);
                 dateDebut = new DateTime(moisDebut, jourDebut, anneeDebut);
             }
 
@@ -619,8 +619,8 @@ namespace Catalogue_ENSC
             {
                 List<string> listStringDateFin = Program.SeparerChaineDeCaracteres(stringDateFin);
                 int moisFin = int.Parse(listStringDateFin[1]);
-                int jourFin = int.Parse(listStringDateFin[0]);
-                int anneeFin = int.Parse(listStringDateFin[2]);
+                int jourFin = int.Parse(listStringDateFin[2]);
+                int anneeFin = int.Parse(listStringDateFin[0]);
                 dateFin = new DateTime(moisFin, jourFin, anneeFin);
             }
 
@@ -637,7 +637,7 @@ namespace Catalogue_ENSC
 
 
             int NbTypesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
-            Repertoire.RepertoireTypesProjets.Add(new TypeProjet(nom, sujet, sujetLibre, anneesEtudes, matieres, nbPersonnesImpliquees, tuteurs, livrables,
+            Repertoire.RepertoireTypesProjets.Add(new TypeProjet(nom, sujet, sujetLibre, anneesEtudes, matieres, tuteurs, livrables,
                 dateDebut, dateFin, motsClefs));
             int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
 
@@ -679,9 +679,11 @@ namespace Catalogue_ENSC
                 anneeEtudeRedoublement = int.Parse(Program.EnleverLesEspaces(Console.ReadLine()));
             }
 
+            string identifiant = prenom[0].ToString().ToLower() + nom.ToLower();
+
 
             int NbElevesProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
-            Repertoire.RepertoireEleves.Add(new Eleve(prenom, nom, promo, aRedouble, anneeEtudeRedoublement, pronom, Program));
+            Repertoire.RepertoireEleves.Add(new Eleve(identifiant, prenom, nom, promo, aRedouble, anneeEtudeRedoublement, pronom, Program));
             int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
 
             if (NbTypesProjetsAprès == NbElevesProjetsAvant + 1)
@@ -723,9 +725,10 @@ namespace Catalogue_ENSC
                 pronom = Program.EnleverLesEspaces(Console.ReadLine());
             }
 
+            string identifiant = prenom[0].ToString().ToLower() + nom.ToLower();
 
             int NbAutreIntervantProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
-            Repertoire.RepertoireAutresIntervenants.Add(new AutreIntervenant(prenom, nom, statut, pronom, Program));
+            Repertoire.RepertoireAutresIntervenants.Add(new AutreIntervenant(identifiant, prenom, nom, statut, pronom, Program));
             int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
 
             if (NbTypesProjetsAprès == NbAutreIntervantProjetsAvant + 1)
@@ -798,8 +801,10 @@ namespace Catalogue_ENSC
             string stringAnneeFin = Program.EnleverLesEspaces(Console.ReadLine());
             int anneeFin = int.Parse(stringAnneeFin);
 
+            string nom = anneeDebut.ToString() + "-" + anneeFin;
+
             int NbAnneeScolaireProjetsAvant = Repertoire.RepertoireTypesProjets.Count();
-            Repertoire.RepertoireAnneesScolaires.Add(new AnneeScolaire(anneeDebut, anneeFin, Program));
+            Repertoire.RepertoireAnneesScolaires.Add(new AnneeScolaire(nom, anneeDebut, anneeFin, Program));
             int NbTypesProjetsAprès = Repertoire.RepertoireProjets.Count();
 
             if (NbTypesProjetsAprès == NbAnneeScolaireProjetsAvant + 1)
