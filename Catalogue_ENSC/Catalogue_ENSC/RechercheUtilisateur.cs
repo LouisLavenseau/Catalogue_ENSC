@@ -18,8 +18,8 @@ namespace Catalogue_ENSC
 
         public void InitialiserConsultation()
         {
-            Console.WriteLine("Quel mode de recherche voulez-vous utiliser ? Ecrivez élève, tuteur, client, année scolaire, \n " +
-                "promo, mot-clef, liberté de sujet, ou type de projet");
+            Console.WriteLine("Quel mode de recherche voulez-vous utiliser ? Ecrivez élève, année scolaire, \n " +
+                "promo, mot-clef, ou type de projet");
             string modeDeRecherche = Console.ReadLine();
             Console.Clear();
             Console.WriteLine("Et une recherche sur quel " + modeDeRecherche + " voulez-vous réaliser ?");

@@ -1,0 +1,26 @@
+communication web
+CO6SFCWO 
+sciences fondamentales
+C06SFON0
+introduction a l'informatique
+CO6SFPA0
+sciences fondamentales
+C06SFON0
+projet transdisciplinaire
+CO5PRTD0
+projet
+CO5PRST0
+intelligence artificielle 1
+CO7SCIA0
+ingienierie cognitique
+C07SCOG0
+projet informatique indivuduel
+C0ESFPI0 
+sciences fondamtentales
+CO8SFON0
+systemes cognitifs
+C09SYCO0
+systemes cognitifs
+C09SYCO0
+
+

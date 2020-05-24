@@ -87,6 +87,9 @@ namespace Catalogue_ENSC
 
             }
 
+            Console.WriteLine("Modification réalisée avec succès !");
+            Console.ReadLine();
+
 
         }
 
