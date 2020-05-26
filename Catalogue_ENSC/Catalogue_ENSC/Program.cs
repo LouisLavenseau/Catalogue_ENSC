@@ -14,28 +14,35 @@ namespace Catalogue_ENSC
         {
             Program program = new Catalogue_ENSC.Program();
             Eleve llavenseau = new Eleve("llavenseau", "Louis", "Lavenseau", 2022, false, 0, "il", program);
+            Eleve cbrissaud = new Eleve("cbrissaud", "Cloe", "Brissaud", 2022, false, 0, "elle", program);
             AutreIntervenant bpesquet = new AutreIntervenant("bpesquet", "Baptiste", "Pesquet", "professeur", "il", program);
             AutreIntervenant eclermont = new AutreIntervenant("eclermont", "Edwige", "Clermont", "professeur", "elle", program);
+            AutreIntervenant csemal = new AutreIntervenant("csemal", "Catherine", "Semal", "professeur", "elle", program);
+            Livrable soutenance = new Livrable("soutenance",program);
+            Livrable produit = new Livrable("produit", program);
             TypeProjet tp1 = new TypeProjet("tp1", "sujet 1", "impose", new List<int> { 1, 2 }, new List<Matiere> {  }, new List<AutreIntervenant> { bpesquet }, new List<Livrable> { }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
             TypeProjet tp2 = new TypeProjet("tp2", "sujet 2", "libre", new List<int> { 1, 2 }, new List<Matiere> {  }, new List<AutreIntervenant> { eclermont }, new List<Livrable> { }, new DateTime(6, 6, 6), new DateTime(6, 6, 6), new List<string> { "inventé" });
+            TypeProjet transdi = new TypeProjet("projet transdisciplinaire", "", "liste", new List<int> { 1 }, new List<Matiere> { }, new List<AutreIntervenant> { }, new List<Livrable> { produit, soutenance }, new DateTime(2019,9,12), new DateTime(2019,5,25), new List<string> { });
             AnneeScolaire cetteAnnee = new AnneeScolaire("2019-2020", 2019, 2020, program);
             AnneeScolaire anneeProchaine = new AnneeScolaire("2020-2021", 2020, 2021, program);
+            Matiere commweb = new Matiere("web","CO6SFCWO","sciences fondamentales","C06SFON0", program);
+            Matiere introinfo = new Matiere("introduction a l'informatique", "CO6SFPA0", "sciences fondamentales", "C06SFON0",program);
             Repertoire repertoire = 
             new Repertoire(new List<Projet> {}, 
             new List<TypeProjet> {
-                tp1, tp2 }, 
-            new List<Matiere> {
+                tp1, tp2,transdi }, 
+            new List<Matiere> { commweb, introinfo
                  },
             new List<Eleve> {
-                llavenseau }, 
+                llavenseau, cbrissaud }, 
             new List<AutreIntervenant> {
-                bpesquet, eclermont }, 
+                bpesquet, eclermont, csemal}, 
             new List<AnneeScolaire> {
                 cetteAnnee, anneeProchaine }, 
-            new List<Livrable> { },
+            new List<Livrable> {soutenance, produit },
             new List<string> {
                 "blabla1", "blabla2", "blabla3" }, 
-            new List<int> { }, 
+            new List<int> {2020,2021,2022 }, 
             new List<int> {
                 3, 2, 1 }, 
             new List<string> {
@@ -46,7 +53,7 @@ namespace Catalogue_ENSC
             RechercheUtilisateur rechercheUtilisateur = new RechercheUtilisateur(repertoire);
 
          
-           sauvegarde.RecupFichierTxtAnneesScolaires();
+         /*  sauvegarde.RecupFichierTxtAnneesScolaires();
             sauvegarde.RecupFichierTxtLivrables();
             sauvegarde.RecupFichierTxtMatieres();
              sauvegarde.RecupFichierTxtAutresIntervenants();
@@ -61,7 +68,7 @@ namespace Catalogue_ENSC
                 Console.WriteLine("yo" + m);
             }
             
-            Console.ReadLine();
+            Console.ReadLine();*/
             
             string fonctionnaliteVoulue = null;
             while (fonctionnaliteVoulue != "")
@@ -210,7 +217,7 @@ namespace Catalogue_ENSC
                     cpt++;
                 }
                 cpt--;
-                while (!dernierCaracNonEspaceAtteint & cpt < longueurChamp) //On parcourt le champ du premier caractèrequi n'est pas un espace jusqu'au dernier ou jusqu'à la fin du champ
+                while (!dernierCaracNonEspaceAtteint & cpt < longueurChamp) //On parcourt le champ du premier caractère qui n'est pas un espace jusqu'au dernier ou jusqu'à la fin du champ
                 {
                     if (champ[cpt] != ' ')
                         champSansEspaces += champ[cpt];

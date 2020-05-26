@@ -235,7 +235,7 @@ namespace Catalogue_ENSC
                     premierMotPasse = true;
                 }
             }
-            return "Nom : " + Nom + "\n" + "Sujet : " +Sujet + "\n" + "Liberté du sujet " + sujetLibre + "\n" + "Type du projet" + TypeProjet + "\n" + "Année(s) d'étude " + anneeEtudes + "\n" + "Matières : " 
+            return "Nom : " + Nom + "\n" + "Sujet : " +Sujet + "\n" + "Liberté du sujet : " + sujetLibre + "\n" + "Type du projet : " + TypeProjet + "\n" + "Année(s) d'étude : " + anneeEtudes + "\n" + "Matières : " 
                 + matieres + "\n" + "Années de promotion : " + promos + "\n" + "Année scolaire : " + AnneeScolaire + "\n" + "Nombre de personnes impliquées : " + NbPersonnesImpliquees + 
                 "\n" + "Etudiants : " + etudiants + "\n" + "Chef de projet : " + ChefDeProjet + "\n" + "Developpeurs : " + developpeurs + "\n" + "Maquetteurs : " + maquetteurs + "\n" + "Pole facteur humain : " + 
                 poleFacteurHumain + "\n" + "Client : " + Client + "\n" + "Tuteurs : " + tuteurs + "\n" + "Livrables : " + livrables + "\n" + "Date de début : " + DateDebut.ToLongDateString() + "\n" +

@@ -100,7 +100,6 @@ namespace Catalogue_ENSC
             // Création d'une instance de StreamWriter pour permettre l'ecriture de notre fichier cible
             StreamWriter monStreamWriter = File.AppendText("TypesProjets.txt");
 
-            Console.WriteLine("yo");
 
             //on écrit dans le fichier cible
             monStreamWriter.WriteLine("yo " + nom + "\n" + sujet + "\n" + sujetLibre + "\n" + anneesEtudes + "\n" + matieres + "\n"
