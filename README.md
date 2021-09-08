@@ -1,2 +1,2 @@
 # Catalogue_ENSC
-Application de gestion et recherche des projets de l'ENSC
+Management and research of the ENSC projects Winforms application
